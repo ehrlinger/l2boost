@@ -1,0 +1,18 @@
+\name{fitted.l2boost}
+\alias{fitted.l2boost}
+\title{fitted.l2boost}
+\usage{
+  fitted.l2boost(object, m = NULL, ...)
+}
+\arguments{
+  \item{object}{an l2boost object for the extraction of
+  model coefficients.'}
+
+  \item{m}{the iteration number with the l2boost path. If
+  m=NULL, the coefficients are obtained from the last
+  iteration M.}
+}
+\description{
+  fitted.l2boost
+}
+
