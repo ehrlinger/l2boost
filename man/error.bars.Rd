@@ -5,7 +5,25 @@
   error.bars(x, upper, lower, width = 0.001, max.M = 100,
     ...)
 }
+\arguments{
+  \item{x}{Vector of error bar x value locations}
+
+  \item{upper}{Vector of upper error bar limits}
+
+  \item{lower}{Vector of limit error bar limits}
+
+  \item{width}{errorbar line width (default: 0.001)}
+
+  \item{max.M}{maximum number of bars to show in a plot
+  (default: 100)}
+
+  \item{...}{Additional arguments passed to segment
+  function}
+}
 \description{
   nice standard errors for plots
+}
+\seealso{
+  \code{\link{segments}}
 }
 

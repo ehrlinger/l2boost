@@ -1,4 +1,6 @@
 #' determines which index maximizes a vector, with some elements excluded
+#' @param vec values to maximize
+#' @param exclude vector of indices to exclud
 which.max.ind <-
 function(vec, exclude = NULL) {
    if (!is.null(exclude)) {

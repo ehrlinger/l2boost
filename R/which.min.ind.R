@@ -1,5 +1,8 @@
 
 #' determines which index minimizes a vector, with some elements excluded
+
+#' @param vec vector of values to minimize
+#' @param exclude vector of indices to exclude
 which.min.ind <-
 function(vec, exclude = NULL) {
    if (!is.null(exclude)) {

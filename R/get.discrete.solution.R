@@ -1,5 +1,11 @@
 
-#' l2boost internal method to get discrete solution (critical value, critical point)
+#' l2boost internal method to get discrete step sized solution (critical value, critical point)
+
+#' @param rho.m vector of gradient corellations to this point (m)
+#' @param corr.x correlation matrix
+#' @param lr current step direction
+#' @param nu l1 shrinkage parameter
+
 get.discrete.solution <-
 function(rho.m, corr.x, lr, nu) {
   # get the step size

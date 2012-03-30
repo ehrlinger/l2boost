@@ -2,7 +2,7 @@ Package: l2boost
 Type: Package
 Title: Efficient boosting with l2-loss function and coordinate direction basis
     functions.
-Version: 0.9
+Version: 0.11
 Date: 2012-03-29
 Authors@R: c(person("John", "Ehrlinger", role=c("aut", "cre"),
     email="john.ehrlinger@gmail.com"), person("Hemant", "Ishwaran",
@@ -42,3 +42,4 @@ Collate:
     'which.max.ind.R'
     'which.min.ind.R'
     'help.R'
+    'diabetes.R'

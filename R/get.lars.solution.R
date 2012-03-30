@@ -1,5 +1,15 @@
 
 #' l2boost internal method to get l2boost-lars limiting solution
+
+
+#' @param rho.m vector of gradient corellations to this point (m)
+#' @param corr.x correlation matrix
+#' @param activeS Acrive set
+#' @param qr.tol the tolerance for detecting linear dependencies in the qr.solve
+#' @param eps.tol limiting value for dynamic boosting step size
+
+#' @seealso \code{\link{qr.solve}}
+
 get.lars.solution <-
 function(rho.m, corr.x, activeS, qr.tol, eps.tol) {
   rhom.sign <- sign(rho.m[activeS])

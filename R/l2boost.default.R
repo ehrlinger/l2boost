@@ -1,5 +1,43 @@
-#' default l2boost method takes a design matrix and response vector
+
+#' l2boost implements the boosting using an l2-loss function
 #'
+#' l2boost is a fast implementation of Friedman's boosting algorithm with 
+#' coordinate direction base learners and an l2-loss function.
+#'
+#' @title l2boost: linear regression boosting with an l2 loss function.
+#' @param x design matrix of dimension n x p
+#' @param y response variable of length n
+#' @param M number of steps to run boost algorithm (M >1)
+#' @param nu l1 shrinkage parameter (0 < nu <= 1)
+#' @param lambda l2 shrinkage parameter used for elastic net boosting (lambda > 0 || lambda = NULL)
+#' @param type Choice of l2boost algorithm from "friedman", "discrete", "hybrid", "lars" 
+#' @param qr.tolerance tolerance limit for use in \code{\link{qr.solve}} (default: 1e-30)
+#' @param eps.tolerance dynamic step size lower limit (default: .Machine$double.eps)
+#' @param trace show runtime messages (default: FALSE)
+#' @param ... other arguments (currently unused)
+#'
+#' @return A "l2boost" object is returned, for which print, plot, predict,  and coef methods exist.
+#'
+#' @seealso \code{\link{print.l2boost}}, \code{\link{plot.l2boost}}, \code{\link{predict.l2boost}} methods of l2boost and \code{\link{cv.l2boost}}
+#'
+#' @references John Ehrlinger, Hemant Ishwaran (2012). Characterizing l2boosting. \emph{Annals of Statistics}, to appear. 
+#'
+#' @examples
+#'     data(diabetes)
+#'     par(mfrow=c(2,2))
+#'     attach(diabetes)
+#'     object <- l2boost(x,y, M=1000, nu=.01)
+#'     plot(object)
+#'     object2 <- l2boost(x,y,M=10000, nu=1.e-3) # increased shrinkage and number of iterations.
+#'     plot(object2)
+#'     object3 <- l2boost(x,y,M=10000, nu=1.e-3, lambda=.05) # elasticNet Boosting with l2 shrinkage 
+#'     plot(object3)
+#'     object4 <- l2boost(x,y,M=10000, nu=1.e-3, lambda=.1) # elasticNet Boosting with more l2 shrinkage 
+#'     plot(object4)
+
+#'     detach(diabetes)
+#'
+#' @rdname l2boost
 #' @S3method l2boost default
 l2boost.default <-
 function(x, y,
@@ -74,10 +112,12 @@ function(x, y,
   # initialize rho entities
   # initialize x-correlation (corr) entities
   l.crit <- L.crit <- S.crit <- rep(0, M + 1)
-  rhom.path <-vector(length = (M + 1), "list")
+  rhom.path <- vector(length = (M + 1), "list")
   corr.x <- vector(length = p, "list")
   VR <- rep(0, M)
-                    
+  mjk <- vector(length = M, "list")
+  stepSize <- vector(length = M, "list")
+          
   # calculate all x_j^Ty: initializes rho
   # initialize rho-related quantities
   rho.m <- c(t(x) %*% y)
@@ -125,6 +165,9 @@ function(x, y,
       betam[lr] <- betam[lr] + rho.update
       rho.m <- rho.m.PlusOne
 
+      #save mjk (methodology related)
+      mjk[[r]] <- mstep.long(rho.m, corr.x[[lr]], lr, nu)
+
     }
     
     else if (TYPE == "DISCRETE") {
@@ -152,6 +195,9 @@ function(x, y,
       betam[lr] <- betam[lr] + rho.update
       rho.m <- rho.m - rho.update * corr.x[[lr]]
       
+      #save mjk (methodology related)
+      mjk[[r]] <- path.solve$M.step
+
     }
    
     else if (TYPE == "HYBRID") {
@@ -215,6 +261,9 @@ function(x, y,
       # trace
       if (trace) cat(r, lr, path.solve$lr.PlusOne, VR[r], "\n")
 
+      # update step size
+      stepSize[[r]] <- abs(path.solve$gmma)/sum(abs(path.solve$gmma), na.rm = TRUE)
+
       # updates
       l.crit[r + 1] <- path.solve$lr.PlusOne 
       rho.update <- VR[r] * rho.m[first.coord]
@@ -254,6 +303,8 @@ function(x, y,
          l.crit = l.crit[1:M],
          L.crit = (if (TYPE == "FRIEDMAN" | TYPE == "DISCRETE") L.crit[-1] else VR[1:M]),
          S.crit = (if (TYPE == "DISCRETE") S.crit[-1] else NULL),
+         mjk = (if (TYPE == "FRIEDMAN" | TYPE == "DISCRETE") mjk  else NULL),
+         stepSize = (if (TYPE == "LARS") stepSize else NULL),        
          rhom.path = rhom.path[1:(M+1)],
          Fm = (ybar + Fm), Fm.path = Fm.path[1:(M+1)],
          betam = betam, betam.path = betam.path[1:(M+1)],

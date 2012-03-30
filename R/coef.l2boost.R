@@ -1,9 +1,8 @@
-
-# Other generic functions
 #' coef.l2boost
 #' 
 #' @param object an l2boost object for the extraction of model coefficients.'
 #' @param m the iteration number with the l2boost path. If m=NULL, the coefficients are obtained from the last iteration M.
+#' @param ... generic arguments passed to parent function
 #'
 #' @S3method coef l2boost
 coef.l2boost <-

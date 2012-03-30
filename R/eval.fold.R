@@ -1,4 +1,17 @@
 #' core cv function
+
+#' @param k Index of this fold
+#' @param K Total number of folds to perform
+#' @param all.folds List of length K of observation indexes sorted into the K-fold data partitions
+#' @param x design matrix
+#' @param y response vector
+#' @param M Total number of l2boost iterations to perform
+#' @param nu l1 shrinkage parameter (0< nu <= 1)
+#' @param lambda l2 shrinkage parameter for elasticBoosting (lambda > 0 || lambda = NULL) 
+#' @param trace Show fold progress information? (T||F)
+#' @param type Which l2boost algorithm? 
+#' 
+#' @seealso \code{\link{l2boost}}
 eval.fold <-
 function(k, K, all.folds, x, y, M, nu, lambda, trace, type) {  
   if (trace) {

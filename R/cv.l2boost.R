@@ -6,7 +6,21 @@
 #---------------------------------------------------------------------
 #' cv.l2boost K fold Cross Validation of the l2boost algorithm
 #'
-#' @param K = 10 number of cross validation folds
+#' @param K number of cross validation folds (default: 10)
+#' @param x the design matrix
+#' @param y the response vector
+#' @param M the total number of iterations to boost. 
+#'    If NULL, M is set to minimum of n or p from design matrix
+#' @param nu l1 shrinkage paramater (default: 1e-4)
+#' @param lambda l2 shrinkageparameter (default: NULL)
+#' @param trace Show computation output? (default: FALSE)
+#' @param type Type of l2boost fit with (default: freidman)
+#' @param ... Additional arguments to l2boost
+#'
+#' @seealso \code{\link{l2boost}}, \code{\link{plot.l2boost}}
+#'
+#' @examples
+#'   dta <- mvnorm.l2boost()
 #'
 #' @export cv.l2boost
 #' @importFrom parallel mclapply
@@ -39,15 +53,21 @@ function(x, y, K = 10, M = NULL, nu = 1e-4, lambda = NULL, trace = FALSE,
   yhat <- predict.l2boost(fit.all)$yhat.path[[opt.step]]
   pred <- predict.l2boost(fit.all, type = "coef")
   opt.norm <- sum(abs(pred$coef.path[[opt.step]]), na.rm = TRUE)
+  # add names to the optimal coefficient path
+  opt.coef.path <- pred$coef.path[[opt.step]]
+  opt.coef.stand.path <- pred$coef.stand.path[[opt.step]]
+  names(opt.coef.path) <- names(opt.coef.stand.path) <- fit.all$names
+ 
   # return the object
   object <- list(obj = fit.all,
                  mse = mse,
                  mse.list = mse.list,
                  yhat = yhat,
-                 coefficients = pred$coef.path[[opt.step]],
-                 coefficients.stand = pred$coef.stand.path[[opt.step]],
+                 coef = opt.coef.path,
+                 coef.stand = opt.coef.stand.path,
                  opt.step = opt.step,
-                 opt.norm = opt.norm)
+                 opt.norm = opt.norm,
+                 names = fit.all$names)
   class(object) <- c("l2boost", "cv")
   invisible(object)
 }

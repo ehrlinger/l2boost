@@ -1,4 +1,10 @@
 #' extract correlations: uses a smart reduction for elastic net modification
+
+#' @param x design matrix (possibly augmented for elasticBoosting)
+#' @param l currently selected direction
+#' @param enet elasticBoost indicator, requires since we only scale the non-augmented design matrix
+#' @param n.org length of the non-augmented design matrix
+
 extract.corr <-
 function(x, l, enet, n.org) {
   if (enet) {

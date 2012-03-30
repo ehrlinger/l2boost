@@ -11,6 +11,8 @@
   \item{m}{the iteration number with the l2boost path. If
   m=NULL, the coefficients are obtained from the last
   iteration M.}
+
+  \item{...}{other arguments}
 }
 \description{
   fitted.l2boost

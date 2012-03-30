@@ -1,5 +1,16 @@
 #' Plots l2boost objects
-
+#' @param obj l2boost object
+#' @param type which type of plot. \emph{rho} shows gradient correlation, \emph{coef} regression (beta) coefficients
+#' @param standardize Should we plot standardized gradient correlation (default: TRUE)
+#' @param active.set Vector of indices of the coordinates for highlighting with color=col (default: NULL shows all active coordinates)
+#' @param xvar what measure do we plot on the x-axis? \emph{step} plots the step m, \emph{norm} plots the normalized distance (1-nu)^(m-1)
+#' @param x.lab specific x-axis label (NULL results in default value depending on xvar)
+#' @param y.lab specific y-axis label (NULL results in default value depending on type)
+#' @param trim (default: TRUE)
+#' @param clip Do we want to c
+#' @param col Color to highlight active.set coordinates (NULL indicates default all active set at step M in blue, changes to red after selection
+#' @param ylim Control plotted y-values (default: NULL for auto range)
+#' @param xlim Control plotted x-values (default: NULL for auto domain )
 #' @return \code{NULL}
 #'
 #' @S3method plot l2boost

@@ -2,6 +2,7 @@
 #'
 #' @param obj an l2boost object
 #' @param xnew a new design matrix to fit with the l2boost obj
+#' @param newdata a new design matrix to fit with the l2boost obj
 #' @param type fit returns the predicted values coef returns the model coefficients
 #'
 #' @S3method predict l2boost

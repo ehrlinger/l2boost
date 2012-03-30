@@ -5,6 +5,8 @@
 #---------------------------------------------------------------------
 #' print.l2boost
 #'
+#' @param x an l2boost object 
+#' @param ... other arguments (not used)
 #'
 #' @S3method print l2boost
 

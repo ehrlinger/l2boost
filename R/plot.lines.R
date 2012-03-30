@@ -1,5 +1,12 @@
 
 #' plots the path lines (each j, against each r-step)
+#' @param xval vector of x-values corresponding to the path y-values (default: NULL index of path)
+#' @param ind Coordinate of the path (for coloring individual paths)
+#' @param path Plot the path values along the y-axis
+#' @param l.crit change the color at the value of m=l.crit
+#' @param active active set coloring (default: TRUE)
+#' @param col vector of color values lnegth >= 1 (default: NULL use built in scheme)
+
 plot.lines <-
 function (xval = NULL, ind, path, l.crit, active = TRUE, col=NULL) {
   M <- length(path)
@@ -35,7 +42,7 @@ function (xval = NULL, ind, path, l.crit, active = TRUE, col=NULL) {
 	  clr= col
 	  lty=2
 	}
-	lines(xval, path.k, lty = lty, col = clr)
+	lines(xval, path.k, lty = lty, lwd = 3,col = clr)
       }
     }else {
       lines(xval, path.k, lty = 1, col = "gray")
