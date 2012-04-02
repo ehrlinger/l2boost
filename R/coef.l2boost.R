@@ -1,4 +1,4 @@
-#' coef.l2boost
+#' coef.l2boost implements the generic coef method for l2boost objects.
 #' 
 #' @param object an l2boost object for the extraction of model coefficients.'
 #' @param m the iteration number with the l2boost path. If m=NULL, the coefficients are obtained from the last iteration M.

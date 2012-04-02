@@ -1,27 +1,28 @@
-#' predict method for l2boost objects.
+#' predict method for l2boost objectects.
 #'
-#' @param obj an l2boost object
-#' @param xnew a new design matrix to fit with the l2boost obj
-#' @param newdata a new design matrix to fit with the l2boost obj
+#' @param object an l2boost objectect
+#' @param xnew a new design matrix to fit with the l2boost object
+#' @param newdata a new design matrix to fit with the l2boost object
 #' @param type fit returns the predicted values coef returns the model coefficients
+#' @param ... other arguments (currently not used)
 #'
 #' @S3method predict l2boost
 predict.l2boost <-
-function(obj, xnew = NULL, type = c("fit", "coef"), newdata=xnew) {
+function(object, xnew = NULL, type = c("fit", "coef"), newdata=xnew, ...) {
  
   type <- match.arg(type)
-  # extract necessary items from the stagewise object
-  ybar <- obj$ybar
-  betam <- betam.stand <- obj$betam
-  betam.path <- betam.stand.path <- obj$betam.path
-  x.na <- obj$x.na
+  # extract necessary items from the stagewise objectect
+  ybar <- object$ybar
+  betam <- betam.stand <- object$betam
+  betam.path <- betam.stand.path <- object$betam.path
+  x.na <- object$x.na
   M <- length(betam.path)
   p <- length(betam)
-  if (any(obj$x.na) & !is.null(xnew)) {
+  if (any(object$x.na) & !is.null(xnew)) {
     xnew <- xnew[, !x.na]
   }
-  if (is.null(xnew)) xnew <- obj$x
-  x.attr <- obj$x.attr
+  if (is.null(xnew)) xnew <- object$x
+  x.attr <- object$x.attr
   n <- x.attr$dim[1]
   n.new <- nrow(xnew)
   if (type == "fit") {

@@ -24,8 +24,6 @@ Collate:
     'get.discrete.solution.R'
     'get.hybrid.solution.R'
     'get.lars.solution.R'
-    'l2boost.default.R'
-    'l2boost.formula.R'
     'l2boost.R'
     'mstep.long.R'
     'mvnorm.l2boost.R'
@@ -43,3 +41,4 @@ Collate:
     'which.min.ind.R'
     'help.R'
     'diabetes.R'
+    'elasticNet.sim.R'

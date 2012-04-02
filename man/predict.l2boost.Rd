@@ -1,23 +1,25 @@
 \name{predict.l2boost}
 \alias{predict.l2boost}
-\title{predict method for l2boost objects.}
+\title{predict method for l2boost objectects.}
 \usage{
-  predict.l2boost(obj, xnew = NULL,
-    type = c("fit", "coef"), newdata = xnew)
+  predict.l2boost(object, xnew = NULL,
+    type = c("fit", "coef"), newdata = xnew, ...)
 }
 \arguments{
-  \item{obj}{an l2boost object}
+  \item{object}{an l2boost objectect}
 
   \item{xnew}{a new design matrix to fit with the l2boost
-  obj}
+  object}
 
   \item{newdata}{a new design matrix to fit with the
-  l2boost obj}
+  l2boost object}
 
   \item{type}{fit returns the predicted values coef returns
   the model coefficients}
+
+  \item{...}{other arguments (currently not used)}
 }
 \description{
-  predict method for l2boost objects.
+  predict method for l2boost objectects.
 }
 

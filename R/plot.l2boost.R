@@ -1,5 +1,6 @@
 #' Plots l2boost objects
-#' @param obj l2boost object
+#'
+#' @param obj l2boost or cv.l2boost object
 #' @param type which type of plot. \emph{rho} shows gradient correlation, \emph{coef} regression (beta) coefficients
 #' @param standardize Should we plot standardized gradient correlation (default: TRUE)
 #' @param active.set Vector of indices of the coordinates for highlighting with color=col (default: NULL shows all active coordinates)
@@ -11,6 +12,8 @@
 #' @param col Color to highlight active.set coordinates (NULL indicates default all active set at step M in blue, changes to red after selection
 #' @param ylim Control plotted y-values (default: NULL for auto range)
 #' @param xlim Control plotted x-values (default: NULL for auto domain )
+#' @param ... other arguments
+#'
 #' @return \code{NULL}
 #'
 #' @S3method plot l2boost
@@ -21,7 +24,7 @@ function(obj,
                          standardize = TRUE, active.set=NULL,
                          xvar = c("step", "norm"),
                          x.lab = NULL, y.lab = NULL,
-                         trim = TRUE, clip=NULL, col=NULL,ylim=NULL, xlim=NULL) {
+                         trim = TRUE, clip=NULL, col=NULL,ylim=NULL, xlim=NULL, ...) {
   # preliminary checks
   if (class(obj)[1] != "l2boost") stop("This function only works for objects of class `l2boost'")
   type <- match.arg(type)

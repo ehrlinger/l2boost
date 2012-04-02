@@ -6,10 +6,10 @@
     standardize = TRUE, active.set = NULL,
     xvar = c("step", "norm"), x.lab = NULL, y.lab = NULL,
     trim = TRUE, clip = NULL, col = NULL, ylim = NULL,
-    xlim = NULL)
+    xlim = NULL, ...)
 }
 \arguments{
-  \item{obj}{l2boost object}
+  \item{obj}{l2boost or cv.l2boost object}
 
   \item{type}{which type of plot. \emph{rho} shows gradient
   correlation, \emph{coef} regression (beta) coefficients}
@@ -44,6 +44,8 @@
 
   \item{xlim}{Control plotted x-values (default: NULL for
   auto domain )}
+
+  \item{...}{other arguments}
 }
 \value{
   \code{NULL}

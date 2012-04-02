@@ -22,7 +22,7 @@ function(x, upper, lower, width = 0.001, max.M = 100, ...) {
         M <- length(x)
         # thin-out x for presentable plots
         if (M > max.M) {
-          pt <- unique(round(seq.int(1, max(x), length = max.M)))
+          pt <- unique(round(seq.int(1, max(x), length.out = max.M)))
         }
         else {
           pt <- 1:M

@@ -1,23 +1,32 @@
-\name{l2boost.default}
+\name{l2boost}
 \alias{l2boost}
-\alias{l2boost.default}
 \alias{l2boost.formula}
 \title{l2boost: linear regression boosting with an l2 loss function.}
 \usage{
-  l2boost.default(x, y, M = NULL, nu = 1e-04,
+  \method{l2boost}{default} (x, y, M = NULL, nu = 1e-04,
     lambda = NULL, trace = FALSE,
     type = c("friedman", "discrete", "hybrid", "lars"),
     qr.tolerance = 1e-30,
     eps.tolerance = .Machine$double.eps, ...)
 
   l2boost.formula(formula, data = list(), ...)
-
-  l2boost(x, ...)
 }
 \arguments{
   \item{x}{design matrix of dimension n x p}
 
   \item{y}{response variable of length n}
+
+  \item{formula}{an object of class \code{\link{formula}}
+  (or one that can be coerced to that class): a symbolic
+  description of the model to be fitted. The details of
+  model specification are given under "Details".}
+
+  \item{data}{an optional data frame, list or environment
+  (or object coercible by \code{\link{as.data.frame}} to a
+  data frame) containing the variables in the model.  If
+  not found in data, the variables are taken from
+  "environment(formula)", typically the environment from
+  which \code{\link{lm}} is called.}
 
   \item{M}{number of steps to run boost algorithm (M >1)}
 
@@ -38,18 +47,6 @@
   \item{trace}{show runtime messages (default: FALSE)}
 
   \item{...}{other arguments (currently unused)}
-
-  \item{formula}{an object of class \code{\link{formula}}
-  (or one that can be coerced to that class): a symbolic
-  description of the model to be fitted. The details of
-  model specification are given under "Details".}
-
-  \item{data}{an optional data frame, list or environment
-  (or object coercible by \code{\link{as.data.frame}} to a
-  data frame) containing the variables in the model.  If
-  not found in data, the variables are taken from
-  "environment(formula)", typically the environment from
-  which \code{\link{lm}} is called.}
 }
 \value{
   A "l2boost" object is returned, for which print, plot,
@@ -57,8 +54,6 @@
 }
 \description{
   l2boost implements the boosting using an l2-loss function
-
-  l2boost taking a formula object instead of design matrix.
 }
 \details{
   l2boost is a fast implementation of Friedman's boosting
@@ -71,8 +66,14 @@ data(diabetes)
     attach(diabetes)
     object <- l2boost(x,y, M=1000, nu=.01)
     plot(object)
+    plot(object, type="coef")
+
     object2 <- l2boost(x,y,M=10000, nu=1.e-3) # increased shrinkage and number of iterations.
     plot(object2)
+    plot(object2, type="coef")
+
+
+    dta <- mvnorm.l2boost()
     object3 <- l2boost(x,y,M=10000, nu=1.e-3, lambda=.05) # elasticNet Boosting with l2 shrinkage
     plot(object3)
     object4 <- l2boost(x,y,M=10000, nu=1.e-3, lambda=.1) # elasticNet Boosting with more l2 shrinkage

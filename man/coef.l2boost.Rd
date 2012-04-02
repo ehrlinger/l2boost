@@ -1,6 +1,6 @@
 \name{coef.l2boost}
 \alias{coef.l2boost}
-\title{coef.l2boost}
+\title{coef.l2boost implements the generic coef method for l2boost objects.}
 \usage{
   coef.l2boost(object, m = NULL, ...)
 }
@@ -15,6 +15,7 @@
   \item{...}{generic arguments passed to parent function}
 }
 \description{
-  coef.l2boost
+  coef.l2boost implements the generic coef method for
+  l2boost objects.
 }
 

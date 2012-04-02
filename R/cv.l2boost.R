@@ -20,8 +20,46 @@
 #' @seealso \code{\link{l2boost}}, \code{\link{plot.l2boost}}
 #'
 #' @examples
-#'   dta <- mvnorm.l2boost()
+#'    sim.data <- elasticNet.sim(n = 100) # build default elasticNet simulation
+#'    x <- sim.data$x
+#'    y <- sim.data$y
+#'  
+#'    cat("\tCross Validated l2boost...\t")
+#'    l2.cv  <- cv.l2boost(x, y, nu = 1.e-3, M = 1.e4, type = "discrete")
+#'    l2.coef<- l2.cv$coefficients
+#'    l2.opt.step <- l2.cv$opt.step
+#'    l2.mse <- l2.cv$mse
 #'
+#'  
+#'    cat("\tCross Validated elasticBoost...\t")
+#' 
+#'    # Double CV over a range of lambda values 
+#'    lambda.seq <- c(0.00001, 0.001, 0.01, seq(0.05, 1, by = 0.05)) 
+#'    n.lambda <- length(lambda.seq)
+#'    eboost.cv.list <- vector("list", length = n.lambda)
+#'    mse <- rep(NA, n.lambda)
+#'    for (k in 1:n.lambda) {
+#'      eboost.cv.list[[k]]  <- cv.l2boost(x, y, nu = 1.e-3, M = 1.e4, type = "discrete", 
+#'        lambda = lambda.seq[k])
+#'      mse[k] <- eboost.cv.list[[k]]$mse
+#'      }
+#'     which.opt.lambda <- min(which(mse == min(mse, na.rm = TRUE)))
+#' 
+#'     # Now refit the optimal step with elasticBoost 
+#'     eboost.obj <- l2boost(x, y,  nu = 1.e-3, M = 1.e4,  trace = FALSE,
+#'         lambda = lambda.seq[which.opt.lambda])
+#'
+#'     par(mfrow=c(2,2))
+#'     plot(l2.cv)
+#'     plot(eboost.cv.list[[which.opt.lambda]])
+#' 
+#'     plot(eboost.obj)
+#
+#     boxplot(t(eboost.coef), xlab = "variable", ylab = "coefficient estimate", outline = TRUE)
+#     points(apply(eboost.coef, 1, mean), col = 2, pch = 15, cex = 0.5)
+#     boxplot(t(l2.coef), xlab = "variable", ylab = "coefficient estimate", outline = TRUE)
+#     points(apply(l2.coef, 1, mean), col = 2, pch = 15, cex = 0.5)
+#
 #' @export cv.l2boost
 #' @importFrom parallel mclapply
 cv.l2boost <-

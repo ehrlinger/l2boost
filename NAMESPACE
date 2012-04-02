@@ -1,4 +1,5 @@
 export(cv.l2boost)
+export(elasticNet.sim)
 export(l2boost)
 export(mvnorm.l2boost)
 importFrom(MASS,mvrnorm)
