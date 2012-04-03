@@ -3,7 +3,7 @@
 \alias{l2boost.formula}
 \title{l2boost: linear regression boosting with an l2 loss function.}
 \usage{
-  \method{l2boost}{default} (x, y, M = NULL, nu = 1e-04,
+  l2boost.default(x, y, M = NULL, nu = 1e-04,
     lambda = NULL, trace = FALSE,
     type = c("friedman", "discrete", "hybrid", "lars"),
     qr.tolerance = 1e-30,
@@ -62,23 +62,33 @@
 }
 \examples{
 data(diabetes)
-    par(mfrow=c(2,2))
-    attach(diabetes)
-    object <- l2boost(x,y, M=1000, nu=.01)
-    plot(object)
-    plot(object, type="coef")
+par(mfrow=c(2,2))
+attach(diabetes)
+object <- l2boost(x,y, M=1000, nu=.01)
+plot(object)
+plot(object, type="coef")
 
-    object2 <- l2boost(x,y,M=10000, nu=1.e-3) # increased shrinkage and number of iterations.
-    plot(object2)
-    plot(object2, type="coef")
+object2 <- l2boost(x,y,M=10000, nu=1.e-3) # increased shrinkage and number of iterations.
+plot(object2)
+plot(object2, type="coef")
+detach(diabetes)
 
 
-    dta <- mvnorm.l2boost()
-    object3 <- l2boost(x,y,M=10000, nu=1.e-3, lambda=.05) # elasticNet Boosting with l2 shrinkage
-    plot(object3)
-    object4 <- l2boost(x,y,M=10000, nu=1.e-3, lambda=.1) # elasticNet Boosting with more l2 shrinkage
-    plot(object4)
-    detach(diabetes)
+## Compare l2boost and elasticNetBoosting using 10-fold CV
+
+par(mfrow=c(2,3))
+dta <- elasticNetSim(n=100)
+object3 <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=NULL) #  l2boost correlated data
+cv.obj3<- cv.l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=NULL)
+plot(object3)
+plot(cv.obj3)
+plot(coef(object3, m=cv.obj3$opt.step), cex=.5, ylab=expression(beta[i]))
+
+object4 <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=.1) # elasticNet Boosting corellated data
+cv.obj4 <- cv.l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=.1)
+plot(object4)
+plot(cv.obj4)
+plot(coef(object4, m=cv.obj4$opt.step), cex=.5, ylab=expression(beta[i]))
 }
 \references{
   John Ehrlinger, Hemant Ishwaran (2012). Characterizing

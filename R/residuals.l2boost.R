@@ -1,16 +1,15 @@
-
-#' residuals.l2boost
-#' 
-#' @param object an l2boost object for the extraction of model coefficients.'
-#' @param m the iteration number with the l2boost path. If m=NULL, the coefficients are obtained from the last iteration M.
+#' Get model residuals for an l2boost object
+#'
+#' @param object an l2boost object for the extraction 
+#' of model coefficients.
+#' @param m the iteration number with the l2boost path. 
+#' If m=NULL, the coefficients are obtained from the last iteration M.
 #' @param ... arguments (unused)
 #'
-
-#' @return \code{NULL}
+#' @return a vector of n residuals
 #'
-#' @rdname residuals
 #' @S3method residuals l2boost
-# requires use of predict to unravel the residuals.
+#' @export residuals.l2boost
 residuals.l2boost <-
 function(object, m=NULL, ...){
 

@@ -9,6 +9,7 @@
 # !!! remove x-columns with NA's !!! CAUTION
 #---------------------------------------------------------------------
 #' @export l2boost
+#' @alias l2boost
 l2boost <-
 function(x, ...)UseMethod("l2boost")
 
@@ -47,29 +48,37 @@ function(x, ...)UseMethod("l2boost")
 #' @references John Ehrlinger, Hemant Ishwaran (2012). Characterizing l2boosting. \emph{Annals of Statistics}, to appear. 
 #'
 #' @examples
-#'     data(diabetes)
-#'     par(mfrow=c(2,2))
-#'     attach(diabetes)
-#'     object <- l2boost(x,y, M=1000, nu=.01)
-#'     plot(object)
-#'     plot(object, type="coef")
+#' data(diabetes)
+#' par(mfrow=c(2,2))
+#' attach(diabetes)
+#' object <- l2boost(x,y, M=1000, nu=.01)
+#' plot(object)
+#' plot(object, type="coef")
 #'
-#'     object2 <- l2boost(x,y,M=10000, nu=1.e-3) # increased shrinkage and number of iterations.
-#'     plot(object2)
-#'     plot(object2, type="coef")
+#' object2 <- l2boost(x,y,M=10000, nu=1.e-3) # increased shrinkage and number of iterations.
+#' plot(object2)
+#' plot(object2, type="coef")
+#' detach(diabetes)
 #'
 #'
-#'     dta <- mvnorm.l2boost()
-#'     object3 <- l2boost(x,y,M=10000, nu=1.e-3, lambda=.05) # elasticNet Boosting with l2 shrinkage 
-#'     plot(object3)
-#'     object4 <- l2boost(x,y,M=10000, nu=1.e-3, lambda=.1) # elasticNet Boosting with more l2 shrinkage 
-#'     plot(object4)
-
-#'     detach(diabetes)
+#' ## Compare l2boost and elasticNetBoosting using 10-fold CV
+#'
+#' par(mfrow=c(2,3))
+#' dta <- elasticNetSim(n=100)
+#' object3 <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=NULL) #  l2boost correlated data
+#' cv.obj3<- cv.l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=NULL)
+#' plot(object3)
+#' plot(cv.obj3)
+#' plot(coef(object3, m=cv.obj3$opt.step), cex=.5, ylab=expression(beta[i]))
+#'     
+#' object4 <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=.1) # elasticNet Boosting corellated data 
+#' cv.obj4 <- cv.l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=.1) 
+#' plot(object4)
+#' plot(cv.obj4)
+#' plot(coef(object4, m=cv.obj4$opt.step), cex=.5, ylab=expression(beta[i]))
 #'
 #' @rdname l2boost
 #' @name l2boost
-#' @method l2boost default
 #' @S3method l2boost default
 l2boost.default <-
 function(x, y,
@@ -349,6 +358,7 @@ function(x, y,
 
 #' 
 #' @rdname l2boost
+#' @alias l2boost.formula
 #' @S3method l2boost formula
 l2boost.formula <-
 function(formula, data=list(), ...){  

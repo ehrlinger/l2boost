@@ -1,13 +1,16 @@
 
-#' fitted.l2boost
+#' fitted.l2boost returns the function F_m(x) evaluated at 
+#' iteration m using the training data set x
 #' 
-#' @param object an l2boost object for the extraction of model coefficients.'
-#' @param m the iteration number with the l2boost path. If m=NULL, the coefficients are obtained from the last iteration M.
-
+#' @param object an l2boost object for the extraction of 
+#' model coefficients.
+#' @param m the iteration number with the l2boost path. 
+#' If m=NULL, the coefficients are obtained from the last iteration M.
 #' @param ... other arguments
 #'
 #'
 #' @S3method fitted l2boost
+#' @export fitted.l2boost
 fitted.l2boost <-
 function(object, m=NULL, ...){
  rnms <- if(is.null(rownames(object$x))){1:dim(object$x)[1]}else{rownames(object$x)}

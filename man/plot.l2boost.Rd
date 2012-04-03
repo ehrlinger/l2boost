@@ -2,14 +2,14 @@
 \alias{plot.l2boost}
 \title{Plots l2boost objects}
 \usage{
-  plot.l2boost(obj, type = c("rho", "coef"),
+  plot.l2boost(object, type = c("rho", "coef"),
     standardize = TRUE, active.set = NULL,
     xvar = c("step", "norm"), x.lab = NULL, y.lab = NULL,
     trim = TRUE, clip = NULL, col = NULL, ylim = NULL,
     xlim = NULL, ...)
 }
 \arguments{
-  \item{obj}{l2boost or cv.l2boost object}
+  \item{object}{l2boost or cv.l2boost object}
 
   \item{type}{which type of plot. \emph{rho} shows gradient
   correlation, \emph{coef} regression (beta) coefficients}

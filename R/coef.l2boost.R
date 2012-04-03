@@ -1,10 +1,11 @@
-#' coef.l2boost implements the generic coef method for l2boost objects.
+#' coef.l2boost method for l2boost objects which extracts model coefficients.
 #' 
-#' @param object an l2boost object for the extraction of model coefficients.'
+#' @param object an l2boost object
 #' @param m the iteration number with the l2boost path. If m=NULL, the coefficients are obtained from the last iteration M.
 #' @param ... generic arguments passed to parent function
 #'
 #' @S3method coef l2boost
+#' @export coef.l2boost
 coef.l2boost <-
 function(object, m=NULL, ...){
  if(is.null(m)){

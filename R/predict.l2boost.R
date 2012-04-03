@@ -7,6 +7,7 @@
 #' @param ... other arguments (currently not used)
 #'
 #' @S3method predict l2boost
+#' @export predict.l2boost 
 predict.l2boost <-
 function(object, xnew = NULL, type = c("fit", "coef"), newdata=xnew, ...) {
  

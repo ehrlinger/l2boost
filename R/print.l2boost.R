@@ -9,6 +9,7 @@
 #' @param ... other arguments (not used)
 #'
 #' @S3method print l2boost
+#' @export print.l2boost
 
 print.l2boost <-
 function(x,...){
