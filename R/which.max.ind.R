@@ -1,3 +1,5 @@
+# This is a hidden function of the l2boost package.
+
 #' determines which index maximizes a vector, with some elements excluded
 #' @param vec values to maximize
 #' @param exclude vector of indices to exclud

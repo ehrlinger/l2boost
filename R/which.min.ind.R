@@ -1,3 +1,4 @@
+# This is a hidden function of the l2boost package.
 
 #' determines which index minimizes a vector, with some elements excluded
 

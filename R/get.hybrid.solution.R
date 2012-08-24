@@ -1,3 +1,4 @@
+# This is a hidden function of the l2boost package.
 
 #' l2boost internal method to  get hybrid solution (step size, critical value)
 

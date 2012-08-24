@@ -1,9 +1,9 @@
 Package: l2boost
 Type: Package
-Title: Efficient boosting with l2-loss function and coordinate direction basis
-    functions.
-Version: 0.11
-Date: 2012-03-29
+Title: Efficient boosting with l2-loss function and coordinate
+    direction basis functions.
+Version: 0.15
+Date: 2012-08-17
 Authors@R: c(person("John", "Ehrlinger", role=c("aut", "cre"),
     email="john.ehrlinger@gmail.com"), person("Hemant", "Ishwaran",
     role="aut"))
@@ -42,3 +42,7 @@ Collate:
     'mvnorm.l2boost.R'
     'residuals.l2boost.R'
     'elasticNetSim.R'
+Packaged: 2012-05-07 18:39:07 UTC; ehrlinj
+Author: John Ehrlinger [aut, cre],
+    Hemant Ishwaran [aut]
+Maintainer: John Ehrlinger <john.ehrlinger@gmail.com>

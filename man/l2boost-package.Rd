@@ -5,7 +5,8 @@
 \description{
   An boosting implementation using coordinate directions
   (design matrix columns) as basis functions and an l2-loss
-  function.
+  function. The l2boost package includes the elasticBoost
+  extensions.
 }
 \references{
   John Ehrlinger, Hemant Ishwaran (2012). Characterizing

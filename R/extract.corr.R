@@ -1,3 +1,5 @@
+# This is a hidden function of the l2boost package.
+
 #' extract correlations: uses a smart reduction for elastic net modification
 
 #' @param x design matrix (possibly augmented for elasticBoosting)

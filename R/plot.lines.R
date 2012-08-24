@@ -1,3 +1,4 @@
+# This is a hidden function of the l2boost package.
 
 #' plots the path lines (each j, against each r-step)
 #' @param xval vector of x-values corresponding to the path y-values (default: NULL index of path)

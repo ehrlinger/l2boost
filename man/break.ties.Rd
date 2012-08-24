@@ -1,7 +1,6 @@
 \name{break.ties}
 \alias{break.ties}
-\title{break critical value ties.
-This internal l2boost helper function determines which direction is more favorable when two directions have the same value of rho.m}
+\title{break ties of critical value in boosting critical direction determination.}
 \usage{
   break.ties(rho.m, corr.x, lr, lr.PlusOne, Lr, nu)
 }
@@ -20,9 +19,13 @@ This internal l2boost helper function determines which direction is more favorab
 
   \item{nu}{shrinkage parameter value}
 }
+\value{
+  a single coordinate index indicating which coordinate
+  direction for the next move.
+}
 \description{
-  break critical value ties. This internal l2boost helper
-  function determines which direction is more favorable
-  when two directions have the same value of rho.m
+  This internal helper function which determines which
+  direction is more favorable when two directions have the
+  same value of rho.m. Used by \code{\link{l2boost}}
 }
 

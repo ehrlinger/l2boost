@@ -1,6 +1,14 @@
-#' Plots l2boost objects
+#---------------------------------------------------------------------
+# l2boost plots
+# ... currently allows for rho/coef paths and will also plot cv objects
+# ... standarized rho paths are gradient-correlation paths
+# ... standarized coefficient paths are coefficient paths for standardized x
+# SHOULD WORK FOR ALL l2boost variants
+#---------------------------------------------------------------------
+
+#' plot method for l2boost objects
 #'
-#' @param object l2boost or cv.l2boost object
+#' @param x l2boost or cv.l2boost object
 #' @param type which type of plot. \emph{rho} shows gradient correlation, \emph{coef} regression (beta) coefficients
 #' @param standardize Should we plot standardized gradient correlation (default: TRUE)
 #' @param active.set Vector of indices of the coordinates for highlighting with color=col (default: NULL shows all active coordinates)
@@ -12,29 +20,32 @@
 #' @param col Color to highlight active.set coordinates (NULL indicates default all active set at step M in blue, changes to red after selection
 #' @param ylim Control plotted y-values (default: NULL for auto range)
 #' @param xlim Control plotted x-values (default: NULL for auto domain )
-#' @param ... other arguments
+#' @param ... other arguments passed to plot functions
 #'
 #' @return \code{NULL}
 #'
+#' @seealso \code{\link{l2boost}}, \code{\link{print.l2boost}}, \code{\link{predict.l2boost}} methods of l2boost and \code{\link{cv.l2boost}}
+#'
+#' @method plot l2boost
 #' @S3method plot l2boost
-#' @export plot.l2boost
+#' 
 plot.l2boost <-
-function(object, 
+function(x, 
                          type = c("rho", "coef"),
                          standardize = TRUE, active.set=NULL,
                          xvar = c("step", "norm"),
                          x.lab = NULL, y.lab = NULL,
                          trim = TRUE, clip=NULL, col=NULL,ylim=NULL, xlim=NULL,...) {
   # preliminary checks
-  if (class(object)[1] != "l2boost") stop("This function only works for objects of class `l2boost'")
+  if (class(x)[1] != "l2boost") stop("This function only works for xs of class `l2boost'")
   type <- match.arg(type)
   xvar <- match.arg(xvar)
   # ----------------------------------------------------------------------------
   # cv plots
   # ----------------------------------------------------------------------------
-  if (class(object)[2] == "cv") {
-    # convert mse into matriobject format more conducive for plotting/printing
-    mse <- object$mse.list
+  if (class(x)[2] == "cv") {
+    # convert mse into matrix format more conducive for plotting/printing
+    mse <- x$mse.list
     K <- length(mse)
     M <- max(sapply(1:K, function(k){length(mse[[k]])}), na.rm = TRUE)
     cv.all <-  matrix(NA, nrow = M, ncol = K)
@@ -68,18 +79,19 @@ function(object,
     matplot(1:M, cv.all, type = c("l", "n")[1 + 1 * (K > 5)], lty = 3, col = 2, lwd = 0.05,
          xlim = range(step.size),
          ylim = y.range,
-         xlab = x.lab, ylab = y.lab)
+         xlab = x.lab, ylab = y.lab, ...=...)
     lines(1:M, cv, lty = 1, lwd = 5, col = 2)
     error.bars(1:M, cv + cv.error, cv - cv.error, width = 0.0025, col = "gray")
-    cat("minimum cross-validated MSE equals", round(object$mse, 4), "for step size", object$opt.step, "\n")
+    cat("minimum cross-validated MSE equals", round(x$mse, 4), "for step size", 
+	x$opt.step -1, "\n")
   }
   else {
-    y <- object$y
-    Fm.path <- object$Fm.path
-    rhom.path <- object$rhom.path
+    y <- x$y
+    Fm.path <- x$Fm.path
+    rhom.path <- x$rhom.path
     M <- length(rhom.path)
-    p <- length(object$betam)
-    l.crit <- object$l.crit
+    p <- length(x$betam)
+    l.crit <- x$l.crit
 
     # determine what goes on the x-axis: (i) step (ii) norm
     if (xvar == "step") {
@@ -87,7 +99,7 @@ function(object,
       if (is.null(x.lab)) x.lab <- "step"
     }
     else {
-      b.m.path <- predict.l2boost(object, type = "coef")$coef.path
+      b.m.path <- predict.l2boost(x, type = "coef")$coef.path
       xval <- sapply(1:M, function(m) {sum(abs(b.m.path[[m]]), na.rm = TRUE)})
       if (is.null(x.lab)) x.lab <- "l1-norm"
     }
@@ -109,11 +121,11 @@ function(object,
     else if (type == "coef") {
       if (standardize) {
         if (is.null(y.lab)) y.lab <- "standardized coefficients"   
-        path <- predict.l2boost(object, type = "coef")$coef.stand.path
+        path <- predict.l2boost(x, type = "coef")$coef.stand.path
       }
       else {
         if (is.null(y.lab)) y.lab <- "coefficients"   
-        path <- predict.l2boost(object, type = "coef")$coef.path
+        path <- predict.l2boost(x, type = "coef")$coef.path
       }
     }
     else {
@@ -127,7 +139,7 @@ function(object,
          xlab = x.lab,
          xlim = xlim,
          ylab = y.lab,
-         ylim = ylim)
+         ylim = ylim, ...=...)
     #plot inactive set first
     if (type == "rho") {
       plot.lines(xval, setdiff(1:p, active.set), path, l.crit, FALSE, col)

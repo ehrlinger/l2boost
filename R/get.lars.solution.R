@@ -1,3 +1,4 @@
+# This is a hidden function of the l2boost package.
 
 #' l2boost internal method to get l2boost-lars limiting solution
 

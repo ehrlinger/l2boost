@@ -1,9 +1,9 @@
 \name{eval.fold}
 \alias{eval.fold}
-\title{core cv function}
+\title{core cv function for generating the K folds}
 \usage{
   eval.fold(k, K, all.folds, x, y, M, nu, lambda, trace,
-    type)
+    type, ...)
 }
 \arguments{
   \item{k}{Index of this fold}
@@ -27,9 +27,12 @@
   \item{trace}{Show fold progress information? (T||F)}
 
   \item{type}{Which l2boost algorithm?}
+
+  \item{...}{extra arguments passed into the
+  \code{\link{l2boost}} method.}
 }
 \description{
-  core cv function
+  core cv function for generating the K folds
 }
 \seealso{
   \code{\link{l2boost}}

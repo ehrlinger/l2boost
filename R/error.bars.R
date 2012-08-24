@@ -1,13 +1,7 @@
-
-#---------------------------------------------------------------------
-# l2boost plots
-# ...  currently allows for rho/coef paths and will also plot cv objects
-# ... standarized rho paths are gradient-correlation paths
-# ... standarized coefficient paths are coefficient paths for standardized x
-# SHOULD WORK FOR ALL l2boost variants
-#---------------------------------------------------------------------
+# This is a hidden function of the l2boost package.
 
 #' nice standard errors for plots
+#'
 #' @param  x Vector of error bar x value locations
 #' @param  upper Vector of upper error bar limits
 #' @param  lower Vector of limit error bar limits

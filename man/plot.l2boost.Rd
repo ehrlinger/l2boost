@@ -1,15 +1,15 @@
 \name{plot.l2boost}
 \alias{plot.l2boost}
-\title{Plots l2boost objects}
+\title{plot method for l2boost objects}
 \usage{
-  plot.l2boost(object, type = c("rho", "coef"),
+  \method{plot}{l2boost} (x, type = c("rho", "coef"),
     standardize = TRUE, active.set = NULL,
     xvar = c("step", "norm"), x.lab = NULL, y.lab = NULL,
     trim = TRUE, clip = NULL, col = NULL, ylim = NULL,
     xlim = NULL, ...)
 }
 \arguments{
-  \item{object}{l2boost or cv.l2boost object}
+  \item{x}{l2boost or cv.l2boost object}
 
   \item{type}{which type of plot. \emph{rho} shows gradient
   correlation, \emph{coef} regression (beta) coefficients}
@@ -45,12 +45,17 @@
   \item{xlim}{Control plotted x-values (default: NULL for
   auto domain )}
 
-  \item{...}{other arguments}
+  \item{...}{other arguments passed to plot functions}
 }
 \value{
   \code{NULL}
 }
 \description{
-  Plots l2boost objects
+  plot method for l2boost objects
+}
+\seealso{
+  \code{\link{l2boost}}, \code{\link{print.l2boost}},
+  \code{\link{predict.l2boost}} methods of l2boost and
+  \code{\link{cv.l2boost}}
 }
 

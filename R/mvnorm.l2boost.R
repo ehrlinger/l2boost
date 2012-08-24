@@ -1,5 +1,3 @@
-
-
 #---------------------------------------------------------------------
 # l2boost data simulations
 #
@@ -19,7 +17,8 @@
 #' p<- 100
 #' beta <- c(rep(5,10), rep(0,p-10))
 #' ortho.data <- mvnorm.l2boost(n, p, beta)
-#'
+#' cbind(ortho.data$y[1:5],ortho.data$x[1:5,])
+#' 
 #' @export mvnorm.l2boost
 #' @importFrom MASS mvrnorm
 mvnorm.l2boost <-

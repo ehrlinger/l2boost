@@ -1,3 +1,4 @@
+# This is a hidden function of the l2boost package.
 #' robust resample method allows resampling when length(x) <= 1.
 
 #' @param x a vector of one or more elements from which to choose

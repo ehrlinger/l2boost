@@ -1,6 +1,7 @@
+# This is a hidden function of the l2boost package.
 
 #' limiting nu size 
-
+#'
 #' @param rho.m vector of stagewise regression parameters
 #' @param Rk correlation coefficient of current and candidate coordinate directions
 #' @param lr candidate direction index

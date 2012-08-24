@@ -1,8 +1,8 @@
 \name{predict.l2boost}
 \alias{predict.l2boost}
-\title{predict method for l2boost objectects.}
+\title{predict method for l2boost objects.}
 \usage{
-  predict.l2boost(object, xnew = NULL,
+  \method{predict}{l2boost} (object, xnew = NULL,
     type = c("fit", "coef"), newdata = xnew, ...)
 }
 \arguments{
@@ -19,7 +19,40 @@
 
   \item{...}{other arguments (currently not used)}
 }
+\value{
+  function estimates for type=fit, coefficient estimates
+  for type=coef \item{yhat}{vector of n function estimates
+  from the final step M} \item{yhat.path}{list of M
+  function estimates at each step m}
+
+  or
+
+  \item{coef}{vector of p coefficient estimates from final
+  step M} \item{coef.stand}{vector of p standardized
+  coefficient estimates from final step M}
+  \item{coef.path}{list of vectors of p coefficient
+  estimates, one for each step m}
+  \item{coef.stand.path}{list of vectors of p standardized
+  coefficient estimates, one for each step m}
+}
 \description{
-  predict method for l2boost objectects.
+  predict method for l2boost objects.
+}
+\examples{
+#--------------------------------------------------------------------------
+# Example 1: Diabetes
+#
+# See Efron B., Hastie T., Johnstone I., and Tibshirani R.
+# Least angle regression. Ann. Statist., 32:407-499, 2004.
+data(diabetes)
+attach(diabetes)
+
+object <- l2boost(x,y, M=1000, nu=.01)
+
+# With no arguments returns the estimates from the training data.
+predict(object)
+}
+\seealso{
+  \code{\link{predict}} and \code{link{l2boost}}
 }
 

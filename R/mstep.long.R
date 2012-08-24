@@ -1,3 +1,4 @@
+# This is a hidden function of the l2boost package.
 
 #' l2boost function to determine step size for long descent
 #' |Dk| must be less than or equal to 1; force it otherwise

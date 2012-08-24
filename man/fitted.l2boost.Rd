@@ -1,9 +1,9 @@
 \name{fitted.l2boost}
 \alias{fitted.l2boost}
-\title{fitted.l2boost returns the function F_m(x) evaluated at
+\title{fitted returns the function F_m(x) evaluated at
 iteration m using the training data set x}
 \usage{
-  fitted.l2boost(object, m = NULL, ...)
+  \method{fitted}{l2boost} (object, m = NULL, ...)
 }
 \arguments{
   \item{object}{an l2boost object for the extraction of
@@ -16,7 +16,23 @@ iteration m using the training data set x}
   \item{...}{other arguments}
 }
 \description{
-  fitted.l2boost returns the function F_m(x) evaluated at
-  iteration m using the training data set x
+  fitted returns the function F_m(x) evaluated at iteration
+  m using the training data set x
+}
+\examples{
+\dontrun{
+#--------------------------------------------------------------------------
+# Example 1: Diabetes
+#
+# See Efron B., Hastie T., Johnstone I., and Tibshirani R.
+# Least angle regression. Ann. Statist., 32:407-499, 2004.
+data(diabetes)
+
+object <- l2boost(diabetes$x,diabetes$y, M=1000, nu=.01)
+fitted(object)
+}
+}
+\seealso{
+  \code{\link{fitted}} and \code{link{l2boost}}
 }
 
