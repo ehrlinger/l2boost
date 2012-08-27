@@ -1,6 +1,7 @@
 \name{get.lars.solution}
 \alias{get.lars.solution}
-\title{l2boost internal method to get l2boost-lars limiting solution}
+\title{l2boost internal method to get l2boost-lars limiting solution. This function is detailed in
+section 4.7 of Ehrlinger 2011}
 \usage{
   get.lars.solution(rho.m, corr.x, activeS, qr.tol,
     eps.tol)
@@ -21,7 +22,13 @@
 }
 \description{
   l2boost internal method to get l2boost-lars limiting
-  solution
+  solution. This function is detailed in section 4.7 of
+  Ehrlinger 2011
+}
+\references{
+  Ehrlinger (2011). Regularization: Stagewise Regression
+  and Bagging, Ph.D. Dissertation, Case Western Reserve
+  University
 }
 \seealso{
   \code{\link{qr.solve}}

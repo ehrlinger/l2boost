@@ -16,13 +16,13 @@
 #' @param trace Show computation output? (default: FALSE)
 #' @param type Type of l2boost fit with (default: freidman)
 #' @param cores number of cores to parallel the cv analysis.
-#' @param ... Additional arguments to l2boost
+#' @param ... Additional arguments passed to \code{\link{l2boost}}
 #'
 #' @seealso \code{\link{l2boost}}, \code{\link{plot.l2boost}}, \code{\link{predict.l2boost}}
 #'
 #' @return A list of cross validation results:
 #'  \item{call}{the matched call.}   
-#'  \item{type}{Choice of l2boost algorithm from "friedman", "discrete", "hybrid", "lars"}        
+#'  \item{type}{Choice of l2boost algorithm from "friedman", "discrete", "hybrid", "lars"}. see \code{\link{l2boost}}       
 #'  \item{names}{design matrix column names}         
 #'  \item{nu}{The l1 boosting shrinkage parameter value}          
 #'  \item{lambda}{The l2 elasticNet shrinkage parameter value}                   

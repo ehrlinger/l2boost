@@ -1,4 +1,4 @@
-#' coef method for l2boost objects extracts model coefficients from an l2boost fit object.
+#' coef extracts model coefficients from an l2boost model object.
 #' 
 #' @param object an l2boost fit object
 #' @param m the iteration number within the l2boost path. If m=NULL, the coefficients are obtained from the last iteration M.
@@ -38,7 +38,7 @@ coef.l2boost <- function(object, m=NULL, ...){
       if(m >= length(object$betam.path)){
         warning(paste("Iteration selected beyond limit of m=", length(object$betam.path) -1, ". Reseting m=",
                       length(object$betam.path) -1))
-                m =  length(object$betam.path) -1
+        m =  length(object$betam.path) -1
       }
       return(object$betam.path[[m+1]])
     }

@@ -1,6 +1,6 @@
 \name{coef.l2boost}
 \alias{coef.l2boost}
-\title{coef method for l2boost objects extracts model coefficients from an l2boost fit object.}
+\title{coef extracts model coefficients from an l2boost model object.}
 \usage{
   \method{coef}{l2boost} (object, m = NULL, ...)
 }
@@ -20,8 +20,8 @@
   model.
 }
 \description{
-  coef method for l2boost objects extracts model
-  coefficients from an l2boost fit object.
+  coef extracts model coefficients from an l2boost model
+  object.
 }
 \examples{
 \dontrun{

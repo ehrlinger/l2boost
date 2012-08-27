@@ -1,6 +1,6 @@
 \name{plot.lines}
 \alias{plot.lines}
-\title{plots the path lines (each j, against each r-step)}
+\title{plots.lines is used by \code{\link{plot.l2boost}} to the path lines (each j, against each r-step)}
 \usage{
   plot.lines(xval = NULL, ind, path, l.crit, active = TRUE,
     col = NULL)
@@ -22,6 +22,7 @@
   NULL use built in scheme)}
 }
 \description{
-  plots the path lines (each j, against each r-step)
+  plots.lines is used by \code{\link{plot.l2boost}} to the
+  path lines (each j, against each r-step)
 }
 

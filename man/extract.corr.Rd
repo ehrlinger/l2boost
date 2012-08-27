@@ -10,7 +10,7 @@
 
   \item{l}{currently selected direction}
 
-  \item{enet}{elasticBoost indicator, requires since we
+  \item{enet}{elasticBoost indicator, required since we
   only scale the non-augmented design matrix}
 
   \item{n.org}{length of the non-augmented design matrix}

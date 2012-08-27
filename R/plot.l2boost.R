@@ -29,8 +29,7 @@
 #' @method plot l2boost
 #' @S3method plot l2boost
 #' 
-plot.l2boost <-
-function(x, 
+plot.l2boost <- function(x, 
                          type = c("rho", "coef"),
                          standardize = TRUE, active.set=NULL,
                          xvar = c("step", "norm"),
@@ -77,13 +76,13 @@ function(x,
     if (is.null(x.lab)) x.lab <- "steps"
     if (is.null(y.lab)) y.lab <- "cross-validated MSE"
     matplot(1:M, cv.all, type = c("l", "n")[1 + 1 * (K > 5)], lty = 3, col = 2, lwd = 0.05,
-         xlim = range(step.size),
-         ylim = y.range,
-         xlab = x.lab, ylab = y.lab, ...=...)
+            xlim = range(step.size),
+            ylim = y.range,
+            xlab = x.lab, ylab = y.lab, ...=...)
     lines(1:M, cv, lty = 1, lwd = 5, col = 2)
     error.bars(1:M, cv + cv.error, cv - cv.error, width = 0.0025, col = "gray")
     cat("minimum cross-validated MSE equals", round(x$mse, 4), "for step size", 
-	x$opt.step -1, "\n")
+        x$opt.step -1, "\n")
   }
   else {
     y <- x$y
@@ -92,7 +91,7 @@ function(x,
     M <- length(rhom.path)
     p <- length(x$betam)
     l.crit <- x$l.crit
-
+    
     # determine what goes on the x-axis: (i) step (ii) norm
     if (xvar == "step") {
       xval <- 1:M
@@ -103,7 +102,7 @@ function(x,
       xval <- sapply(1:M, function(m) {sum(abs(b.m.path[[m]]), na.rm = TRUE)})
       if (is.null(x.lab)) x.lab <- "l1-norm"
     }
-      
+    
     # ----------------------------------------------------------------------------
     # rho path plots
     # ----------------------------------------------------------------------------

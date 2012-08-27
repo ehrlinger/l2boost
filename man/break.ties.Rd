@@ -1,6 +1,6 @@
 \name{break.ties}
 \alias{break.ties}
-\title{break ties of critical value in boosting critical direction determination.}
+\title{break ties of critical values in boosting critical direction determination.}
 \usage{
   break.ties(rho.m, corr.x, lr, lr.PlusOne, Lr, nu)
 }

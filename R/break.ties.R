@@ -1,6 +1,6 @@
 # This is a hidden function of the l2boost package.
 
-#' break ties of critical value in boosting critical direction determination.
+#' break ties of critical values in boosting critical direction determination.
 #' 
 #' This internal helper function which determines which direction is more favorable when two directions have the same value of rho.m.
 #' Used by \code{\link{l2boost}}
@@ -15,10 +15,10 @@
 #' @return a single coordinate index indicating which coordinate direction for the next move.
 #' 
 break.ties <- function(rho.m, corr.x, lr, lr.PlusOne, Lr, nu) {
-    if (length(lr.PlusOne) > 1) {
-      rho.m.PlusOne <- rho.m[lr.PlusOne] -
-        (1 - (1 - nu)^Lr) * rho.m[lr] * corr.x[lr.PlusOne]
-      lr.PlusOne <- lr.PlusOne[resample(which.max.ind(abs(rho.m.PlusOne)))]
-    }
-    lr.PlusOne
+  if (length(lr.PlusOne) > 1) {
+    rho.m.PlusOne <- rho.m[lr.PlusOne] -
+      (1 - (1 - nu)^Lr) * rho.m[lr] * corr.x[lr.PlusOne]
+    lr.PlusOne <- lr.PlusOne[resample(which.max.ind(abs(rho.m.PlusOne)))]
   }
+  lr.PlusOne
+}

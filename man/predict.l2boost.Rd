@@ -45,12 +45,17 @@
 # See Efron B., Hastie T., Johnstone I., and Tibshirani R.
 # Least angle regression. Ann. Statist., 32:407-499, 2004.
 data(diabetes)
-attach(diabetes)
 
-object <- l2boost(x,y, M=1000, nu=.01)
+object <- l2boost(diabetes$x,diabetes$y, M=1000, nu=.01)
 
 # With no arguments returns the estimates from the training data.
 predict(object)
+
+# Also can return coefficient estimates
+predict(object, type="coef")
+
+# Or used to predict new data, in this case a subset of training data
+cbind(diabetes$y[1:5], predict(object, xnew=diabetes$x[1:5,]))
 }
 \seealso{
   \code{\link{predict}} and \code{link{l2boost}}

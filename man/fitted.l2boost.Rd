@@ -1,6 +1,6 @@
 \name{fitted.l2boost}
 \alias{fitted.l2boost}
-\title{fitted returns the function F_m(x) evaluated at
+\title{returns the fitted function values of an l2boost model object, F_m(x) evaluated at
 iteration m using the training data set x}
 \usage{
   \method{fitted}{l2boost} (object, m = NULL, ...)
@@ -16,8 +16,9 @@ iteration m using the training data set x}
   \item{...}{other arguments}
 }
 \description{
-  fitted returns the function F_m(x) evaluated at iteration
-  m using the training data set x
+  returns the fitted function values of an l2boost model
+  object, F_m(x) evaluated at iteration m using the
+  training data set x
 }
 \examples{
 \dontrun{

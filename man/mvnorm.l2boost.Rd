@@ -1,6 +1,7 @@
 \name{mvnorm.l2boost}
 \alias{mvnorm.l2boost}
-\title{mvnorm.l2boost creates a data simulations for l2boost examples.}
+\title{mvnorm.l2boost creates a data simulations for l2boost examples. This function reproduces the simulations from
+Ehrlinger and Ishwaran (2012)}
 \usage{
   mvnorm.l2boost(n = 100, p = 100, beta = NULL,
     which.beta = NULL, rho = 0)
@@ -21,13 +22,20 @@
 }
 \description{
   mvnorm.l2boost creates a data simulations for l2boost
-  examples.
+  examples. This function reproduces the simulations from
+  Ehrlinger and Ishwaran (2012)
 }
 \examples{
+set.seed(1024)
 n<- 100
 p<- 100
 beta <- c(rep(5,10), rep(0,p-10))
 ortho.data <- mvnorm.l2boost(n, p, beta)
 cbind(ortho.data$y[1:5],ortho.data$x[1:5,])
+}
+\references{
+  John Ehrlinger, Hemant Ishwaran (2012). Characterizing
+  l2boosting. \emph{Annals of Statistics}, 40 (2),
+  1074-1101
 }
 

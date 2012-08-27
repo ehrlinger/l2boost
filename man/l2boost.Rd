@@ -19,14 +19,13 @@
   \item{formula}{an object of class \code{\link{formula}}
   (or one that can be coerced to that class): a symbolic
   description of the model to be fitted. The details of
-  model specification are given under "Details".}
+  model specification are given under
+  \code{\link{formula}}.}
 
   \item{data}{an optional data frame, list or environment
   (or object coercible by \code{\link{as.data.frame}} to a
-  data frame) containing the variables in the model.  If
-  not found in data, the variables are taken from
-  "environment(formula)", typically the environment from
-  which \code{\link{lm}} is called.}
+  data frame) containing the variables in the model used in
+  the \code{\link{formula}}.}
 
   \item{M}{number of steps to run boost algorithm (M >1)}
 
@@ -36,16 +35,18 @@
   boosting (lambda > 0 || lambda = NULL)}
 
   \item{type}{Choice of l2boost algorithm from "friedman",
-  "discrete", "hybrid", "lars" friedman - Original,
-  bare-bones l2boost (Friedman (2001)) discrete - Optimized
-  Friedman to reduce number of evaluations. dynamically
-  determine number of steps to take along a descent
-  direction. Discrete allows the algorithm to take step
-  sizes of multiples of nu at any evaluation. Fastest
-  option. hybrid - Similar to discrete, however only allows
+  "discrete", "hybrid", "lars". \itemize{ \item
+  \emph{friedman} - Original, bare-bones l2boost (Friedman
+  (2001)) \item \emph{discrete} - Optimized Friedman to
+  reduce number of evaluations. dynamically determine
+  number of steps to take along a descent direction.
+  Discrete allows the algorithm to take step sizes of
+  multiples of nu at any evaluation. Fastest option. \item
+  \emph{hybrid} - Similar to discrete, however only allows
   combining steps along the first descent direction. Works
-  best if nu is moderate but not too small. lars - Get the
-  l2boost-lars-limit (See Efron et.al (2004))}
+  best if nu is moderate but not too small. \item
+  \emph{lars} - Get the l2boost-lars-limit (See Efron et.al
+  (2004)) }}
 
   \item{qr.tolerance}{tolerance limit for use in
   \code{\link{qr.solve}} (default: 1e-30)}
@@ -86,8 +87,8 @@
 }
 \description{
   l2boost is a fast implementation of Friedman's boosting
-  algorithm with coordinate direction base learners and an
-  l2-loss function.
+  algorithm for linear regression with coordinate direction
+  base learners and an l2-loss function.
 }
 \examples{
 #--------------------------------------------------------------------------
@@ -116,6 +117,7 @@ plot(object2, type="coef")
 #
 # See Zou H. and Hastie T. Regularization and variable selection via the
 # elastic net. J. Royal Statist. Soc. B, 67(2):301-320, 2005
+set.seed(1024)
 dta <- elasticNetSim(n=100)
 
 # l2boost the simulated data with groups of correlated coordinates
@@ -152,6 +154,7 @@ plot(coef(object4, m=cv.obj4$opt.step), cex=.5, ylab=expression(beta[i]))
 \seealso{
   \code{\link{print.l2boost}}, \code{\link{plot.l2boost}},
   \code{\link{predict.l2boost}} methods of l2boost and
-  \code{\link{cv.l2boost}}
+  \code{\link{cv.l2boost}} for K fold cross validation of
+  the l2boost method.
 }
 

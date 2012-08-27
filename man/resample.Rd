@@ -1,6 +1,7 @@
 \name{resample}
 \alias{resample}
-\title{robust resample method allows resampling when length(x) <= 1.}
+\title{robust resample method allows resampling when length(x) <= 1. This is an
+implementation suggested by the \code{\link{sample}} function in Base R.}
 \usage{
   resample(x, size = 1, ...)
 }
@@ -16,7 +17,8 @@
 }
 \description{
   robust resample method allows resampling when length(x)
-  <= 1.
+  <= 1. This is an implementation suggested by the
+  \code{\link{sample}} function in Base R.
 }
 \seealso{
   \code{\link{sample}}

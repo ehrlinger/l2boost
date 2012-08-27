@@ -4,11 +4,10 @@
 
 #' @param x design matrix (possibly augmented for elasticBoosting)
 #' @param l currently selected direction
-#' @param enet elasticBoost indicator, requires since we only scale the non-augmented design matrix
+#' @param enet elasticBoost indicator, required since we only scale the non-augmented design matrix
 #' @param n.org length of the non-augmented design matrix
 
-extract.corr <-
-function(x, l, enet, n.org) {
+extract.corr <- function(x, l, enet, n.org) {
   if (enet) {
     e.c <- c(t(x[1:n.org, ]) %*% x[1:n.org, l])
     e.c[l] <- 1

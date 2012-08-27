@@ -28,25 +28,26 @@
   \item{cores}{number of cores to parallel the cv
   analysis.}
 
-  \item{...}{Additional arguments to l2boost}
+  \item{...}{Additional arguments passed to
+  \code{\link{l2boost}}}
 }
 \value{
   A list of cross validation results: \item{call}{the
   matched call.} \item{type}{Choice of l2boost algorithm
-  from "friedman", "discrete", "hybrid", "lars"}
-  \item{names}{design matrix column names} \item{nu}{The l1
-  boosting shrinkage parameter value} \item{lambda}{The l2
-  elasticNet shrinkage parameter value} \item{K}{number of
-  folds for cross-validation} \item{mse}{Optimal
-  cross-validation mean square error} \item{mse.list}{list
-  of K vectors of m mean square errors} \item{coef}{beta
-  estimates from the full model at opt.step}
-  \item{coef.stand}{standardized beta estimates from full
-  model at opt.step} \item{opt.step}{optimal step m
-  calculated by cross-validation} \item{opt.norm}{}
-  \item{obj}{l2boost fit of full model}
-  \item{yhat}{estimate of response from full model at
-  opt.step}
+  from "friedman", "discrete", "hybrid", "lars"}. see
+  \code{\link{l2boost}} \item{names}{design matrix column
+  names} \item{nu}{The l1 boosting shrinkage parameter
+  value} \item{lambda}{The l2 elasticNet shrinkage
+  parameter value} \item{K}{number of folds for
+  cross-validation} \item{mse}{Optimal cross-validation
+  mean square error} \item{mse.list}{list of K vectors of m
+  mean square errors} \item{coef}{beta estimates from the
+  full model at opt.step} \item{coef.stand}{standardized
+  beta estimates from full model at opt.step}
+  \item{opt.step}{optimal step m calculated by
+  cross-validation} \item{opt.norm}{} \item{obj}{l2boost
+  fit of full model} \item{yhat}{estimate of response from
+  full model at opt.step}
 }
 \description{
   cv.l2boost K fold Cross Validation for l2boost

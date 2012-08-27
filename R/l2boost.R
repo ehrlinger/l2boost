@@ -12,7 +12,8 @@
 #' @name l2boost
 l2boost <- function(x, ...)UseMethod("l2boost")
 
-#' l2boost is a fast implementation of Friedman's boosting algorithm with coordinate direction base learners and an l2-loss function.
+#' l2boost is a fast implementation of Friedman's boosting algorithm for linear regression with coordinate direction base learners
+#'  and an l2-loss function.
 #'
 #' @usage l2boost.default(x, y, M, nu, lambda, trace, type, qr.tolerance, eps.tolerance, ...)
 #'
@@ -23,30 +24,29 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' @param formula an object of class \code{\link{formula}} 
 #'     (or one that can be coerced to that class): a symbolic 
 #'     description of the model to be fitted. The details of 
-#'     model specification are given under "Details".
+#'     model specification are given under \code{\link{formula}}.
 #' @param data an optional data frame, list or environment 
 #'    (or object coercible by \code{\link{as.data.frame}} to 
-#'    a data frame) containing the variables in the model. 
-#'    If not found in data, the variables are taken from 
-#'    "environment(formula)", typically the environment from 
-#'    which \code{\link{lm}} is called.
-#'
+#'    a data frame) containing the variables in the model used in the
+#'    \code{\link{formula}}.
 #' @param M number of steps to run boost algorithm (M >1)
 #' @param nu l1 shrinkage parameter (0 < nu <= 1)
 #' @param lambda l2 shrinkage parameter used for elastic net boosting (lambda > 0 || lambda = NULL)
-#' @param type Choice of l2boost algorithm from "friedman", "discrete", "hybrid", "lars"
-#' friedman - Original, bare-bones l2boost (Friedman (2001))
-#' discrete - Optimized Friedman to reduce number of evaluations. dynamically determine number of steps to take 
+#' @param type Choice of l2boost algorithm from "friedman", "discrete", "hybrid", "lars".
+#' \itemize{
+#' \item \emph{friedman} - Original, bare-bones l2boost (Friedman (2001))
+#' \item \emph{discrete} - Optimized Friedman to reduce number of evaluations. dynamically determine number of steps to take 
 #' along a descent direction. Discrete allows the algorithm to take step sizes of multiples of nu at any evaluation. Fastest option.
-#' hybrid - Similar to discrete, however only allows combining steps along the first descent direction. Works best if nu 
+#' \item \emph{hybrid} - Similar to discrete, however only allows combining steps along the first descent direction. Works best if nu 
 #' is moderate but not too small.
-#' lars - Get the l2boost-lars-limit (See Efron et.al (2004))
+#' \item \emph{lars} - Get the l2boost-lars-limit (See Efron et.al (2004))
+#' }
 #' @param qr.tolerance tolerance limit for use in \code{\link{qr.solve}} (default: 1e-30)
 #' @param eps.tolerance dynamic step size lower limit (default: .Machine$double.eps)
 #' @param trace show runtime messages (default: FALSE)
 #' @param ... other arguments (currently unused)
 #'
-#' @return A "l2boost" object is returned, for which print, plot, predict,  and coef methods exist.
+#' @return A "l2boost" object is returned, for which print, plot, predict, and coef methods exist.
 #' \item{call}{the matched call.}
 #' \item{type}{Choice of l2boost algorithm from "friedman", "discrete", "hybrid", "lars"}
 #' \item{nu}{The l1 boosting shrinkage parameter value}    
@@ -69,7 +69,7 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' \item{betam}{beta parameter estimate at final step M}
 #'
 #' @seealso \code{\link{print.l2boost}}, \code{\link{plot.l2boost}}, \code{\link{predict.l2boost}} methods of l2boost 
-#' and \code{\link{cv.l2boost}}
+#' and \code{\link{cv.l2boost}} for K fold cross validation of the l2boost method. 
 #'
 #'
 #' @references Friedman (2001) Greedy function approximation: A gradient boosting machine. \emph{Annals of Statistics}, 29:1189-1232
@@ -106,6 +106,7 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' # 
 #' # See Zou H. and Hastie T. Regularization and variable selection via the 
 #' # elastic net. J. Royal Statist. Soc. B, 67(2):301-320, 2005
+#' set.seed(1024)
 #' dta <- elasticNetSim(n=100)
 #' 
 #' # l2boost the simulated data with groups of correlated coordinates
@@ -419,8 +420,7 @@ l2boost.default <- function(x, y,
 #' 
 #' @method l2boost formula
 #' @S3method l2boost formula
-l2boost.formula <-
-  function(formula, data=list(), ...){  
+l2boost.formula <- function(formula, data, ...){  
     mf <- model.frame(formula=formula, data=data)
     x<- model.matrix(attr(mf, "terms"), data=mf)
     y<-model.response(mf)

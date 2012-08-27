@@ -22,17 +22,16 @@
 #'
 #' @method print l2boost
 #' @S3method print l2boost
-print.l2boost <-
-function(x,...){
+print.l2boost <- function(x,...){
   cat("Call:\n")
   print(x$call)
- 
+  
   if(is.null(x$lambda)){
     cat("\nL2boost type:\t", x$type)
   }else{
     cat("\nelasticBoost type:\t", x$type)
   }
-
+  
   cat("\nParameters:\n")
   M <- length(x$l.crit)
   nu <- x$nu
@@ -53,5 +52,5 @@ function(x,...){
   names(coeff$coefficients) <-if(is.null(x$names)){paste("V",1:length(coeff$coefficients), sep="")}else{x$names}
   
   print(coeff$coefficients[which(abs(coeff$coefficients) > 0)]);
-
+  
 }
