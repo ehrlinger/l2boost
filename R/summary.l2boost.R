@@ -1,8 +1,8 @@
 
-#' Unimplemented generic function
-#' These are placeholders right now.
-#' @param object an l2boost object
-#' @param ... other arguments (unused)
+# Unimplemented generic function
+# These are placeholders right now.
+# @param object an l2boost object
+# @param ... other arguments (unused)
 summary.l2boost <- function(object, ...){
   stop("Unimplemented function")
   se <- sqrt(diag(object$vcov))

@@ -2,14 +2,14 @@
 \alias{l2boost}
 \alias{l2boost.default}
 \alias{l2boost.formula}
-\title{l2boost: linear regression boosting with an l2 loss function.}
+\title{Generic gradient descent boosting method [Friedman (2001)] for linear regression.}
 \usage{
   l2boost(x, ...)
 
-  l2boost.default(x, y, M, nu, lambda, trace, type,
-    qr.tolerance, eps.tolerance, ...)
+  \method{l2boost}{default}(x, y, M, nu, lambda, trace,
+    type, qr.tolerance, eps.tolerance, ...)
 
-  l2boost.formula(formula, data, ...)
+  \method{l2boost}{formula}(formula, data, ...)
 }
 \arguments{
   \item{x}{design matrix of dimension n x p}
@@ -34,17 +34,17 @@
   \item{lambda}{l2 shrinkage parameter used for elastic net
   boosting (lambda > 0 || lambda = NULL)}
 
-  \item{type}{Choice of l2boost algorithm from "friedman",
-  "discrete", "hybrid", "lars". \itemize{ \item
-  \emph{friedman} - Original, bare-bones l2boost (Friedman
-  (2001)) \item \emph{discrete} - Optimized Friedman to
+  \item{type}{Choice of l2boost algorithm from "discrete",
+  "hybrid", "friedman","lars". (default "discrete")
+  \itemize{ \item \emph{discrete} - Optimized Friedman to
   reduce number of evaluations. dynamically determine
   number of steps to take along a descent direction.
   Discrete allows the algorithm to take step sizes of
-  multiples of nu at any evaluation. Fastest option. \item
-  \emph{hybrid} - Similar to discrete, however only allows
-  combining steps along the first descent direction. Works
-  best if nu is moderate but not too small. \item
+  multiples of nu at any evaluation. \item \emph{hybrid} -
+  Similar to discrete, however only allows combining steps
+  along the first descent direction. Works best if nu is
+  moderate but not too small. \item \emph{friedman} -
+  Original, bare-bones l2boost (Friedman (2001)) \item
   \emph{lars} - Get the l2boost-lars-limit (See Efron et.al
   (2004)) }}
 
@@ -74,10 +74,11 @@
   value of training response vector} \item{mjk}{measure to
   favorability. This is a matrix of size p by m. Each
   coordinate j has a measure at each step m}
-  \item{stepSize}{} \item{l.crit}{vector of column index of
-  critical direction} \item{L.crit}{number of steps along
-  each l.crit direction} \item{S.crit}{The critical step
-  value where a direction change occurs}
+  \item{stepSize}{vector of step lengths taken (\code{NULL}
+  unless \code{type = "lars"})} \item{l.crit}{vector of
+  column index of critical direction} \item{L.crit}{number
+  of steps along each l.crit direction} \item{S.crit}{The
+  critical step value where a direction change occurs}
   \item{path.Fm}{estimates of response at each step m}
   \item{Fm}{estimate of response at final step M}
   \item{rhom.path}{boosting parameter estimate at each step
@@ -86,75 +87,142 @@
   parameter estimate at final step M}
 }
 \description{
-  l2boost is a fast implementation of Friedman's boosting
-  algorithm for linear regression with coordinate direction
-  base learners and an l2-loss function.
+  Efficient implementation of Freidman's boosting algorithm
+  with l2-loss function and coordinate direction (design
+  matrix columns) basis functions
+}
+\details{
+  The \code{\link{l2boost}} function is an efficient
+  implementation of a generic boosting method [Friedman
+  (2001)] for linear regression using an l2-loss function.
+  The basis functions are the column vectors of the design
+  matrix. \code{\link{l2boost}} scales the design matrix
+  such that the coordinate columns of the design correspond
+  to the gradient directions for each covariate. The
+  boosting coefficients are equivalent to the
+  gradient-correlation of each covariate. Friedman's
+  gradient descent boosting algorithm proceeds at each step
+  along the covariate direction closest (in L2 distance) to
+  the maximal gradient descent direction.
+
+  \code{\link{l2boost}} keeps track of all
+  gradient-coorelation coefficients at each iteration in
+  addition to the maximal descent direction taken by the
+  method. These cab be used to demonstrate the inner
+  workings of gradient boosting (see the examples in the
+  \code{\link{plot.l2boost}} method).
+
+  The \code{\link{l2boost}} function uses an arbitrary
+  L1-regularization parameter (nu), and includes the
+  elementary data augmentation of Ehrlinger and Ishwaran
+  (2012), to add an L2-penalization (lambda) similar to the
+  elastic net [Zou and Hastie (2005)]. The
+  L2-regularization reverses repressibility, a condition
+  where one variable acts as a boosting surrogate for
+  other, possibly informative, variables. Along with the
+  decorrelation effect, this elasticBoost regularization
+  circumvents L2Boost deficiencies in correlated settings.
+
+  We include a series of S3 functions for working with
+  \code{\link{l2boost}} objects: \itemize{ \item
+  \code{\link{print}} (\code{\link{print.l2boost}}) prints
+  a summary of the fit, \item \code{\link{coef}}
+  (\code{\link{coef.l2boost}}) returns the model regression
+  coefficients. \item \code{\link{fitted}}
+  (\code{\link{fitted.l2boost}}) returns the fitted
+  response values from the training set, \item
+  \code{\link{residuals}} (\code{\link{residuals.l2boost}})
+  returns the training set residuals, \item
+  \code{\link{plot}} (\code{\link{plot.l2boost}}) for
+  graphing, \item \code{\link{predict}}
+  (\code{\link{predict.l2boost}}) for prediction on
+  possibly new observations, } A cross-validation method
+  (\code{\link{cv.l2boost}}) is also included for L2boost
+  and elasticBoost cross-validating regularization
+  parameter optimizations.
 }
 \examples{
 #--------------------------------------------------------------------------
-# Example 1: Diabetes
+# Example 1: Diabetes data
 #
-# See Efron et al. (2004).
-data(diabetes, package = "l2boost")
+# See Efron B., Hastie T., Johnstone I., and Tibshirani R.
+# Least angle regression. Ann. Statist., 32:407-499, 2004.
+data(diabetes, package="l2boost")
 
-object <- l2boost(diabetes$x,diabetes$y, M=1000, nu=.01)
+l2.object <- l2boost(diabetes$x,diabetes$y, M=1000, nu=.01)
 
 # Plot the boosting rho, and regression beta coefficients as a function of
 # boosting steps m
+#
+# Note: The selected coordinate trajectories are colored in red after selection, and
+# blue before. Unselected coordinates are colored grey.
+#
 par(mfrow=c(2,2))
-plot(object)
-plot(object, type="coef")
+plot(l2.object)
+plot(l2.object, type="coef")
 
 # increased shrinkage and number of iterations.
-object2 <- l2boost(diabetes$x,diabetes$y,M=10000, nu=1.e-3)
-plot(object2)
-plot(object2, type="coef")
+l2.shrink <- l2boost(diabetes$x,diabetes$y,M=10000, nu=1.e-3)
+plot(l2.shrink)
+plot(l2.shrink, type="coef")
 
 
 #--------------------------------------------------------------------------
-# Example 2: ElasticBoost simulation
-# Compare l2boost and elasticNetBoosting using 10-fold CV
+# Example 2: elasticBoost simulation
+# Compare l2boost and elastic net boosting
 #
 # See Zou H. and Hastie T. Regularization and variable selection via the
 # elastic net. J. Royal Statist. Soc. B, 67(2):301-320, 2005
-set.seed(1024)
+set.seed(1025)
+
+# The default simulation uses 40 covariates with signal concentrated on 3 groups of 5 correlated covariates
+# (for 15 signal covariates)
 dta <- elasticNetSim(n=100)
 
 # l2boost the simulated data with groups of correlated coordinates
-object3 <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=NULL)
+l2.object <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=NULL)
 
-# 10 fold l2boost cross validation to find "optimal" solution.
-cv.obj3 <- cv.l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=NULL)
-par(mfrow=c(2,3))
-plot(object3)
-plot(cv.obj3)
-plot(coef(object3, m=cv.obj3$opt.step), cex=.5, ylab=expression(beta[i]))
+par(mfrow=c(2,2))
+# plot the l2boost trajectories over all M
+plot(l2.object, main="l2Boost nu=1.e-3")
+# Then zoom into the first m=500 steps
+plot(l2.object, xlim=c(0,500), ylim=c(.25,.5), main="l2Boost nu=1.e-3")
 
 # elasticNet same data with l1 parameter lambda=0.1
-object4 <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=.1)
+en.object <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=.1)
 
-# 10 fold elasticNet CV
-cv.obj4 <- cv.l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=.1)
-plot(object4)
-plot(cv.obj4)
-plot(coef(object4, m=cv.obj4$opt.step), cex=.5, ylab=expression(beta[i]))
+# plot the elasticNet trajectories over all M
+#
+# Note 2: The elasticBoost selects all coordinates close to the selection boundary,
+# where l2boost leaves some unselected (in grey)
+plot(en.object, main="elasticBoost nu=1.e-3, lambda=.1")
+# Then zoom into the first m=500 steps
+plot(en.object, xlim=c(0,500), ylim=c(.25,.5),
+  main="elasticBoost nu=1.e-3, lambda=.1")
 }
 \references{
-  Friedman (2001) Greedy function approximation: A gradient
-  boosting machine. \emph{Annals of Statistics},
+  Friedman J. (2001) Greedy function approximation: A
+  gradient boosting machine. \emph{Ann. Statist.},
   29:1189-1232
 
-  Efron B., Hastie T., Johnstone I., and Tibshirani R
-  (2004). Least angle regression (with discussion).
-  \emph{Annals of Statistics}, 32:407-499.
+  Ehrlinger J., and Ishwaran H. (2012). "Characterizing
+  l2boosting" \emph{Ann. Statist.}, 40 (2), 1074-1101
 
-  Ehrlinger and Ishwaran (2012). Characterizing l2boosting.
-  \emph{Annals of Statistics}, 40 (2), 1074-1101
+  Zou H. and Hastie T (2005) "Regularization and variable
+  selection via the elastic net" \emph{J. R. Statist. Soc.
+  B}, 67, Part 2, pp. 301-320
+
+  Efron B., Hastie T., Johnstone I., and Tibshirani R.
+  (2004). "Least Angle Regression" \emph{Ann. Statist.}
+  32:407-499
 }
 \seealso{
   \code{\link{print.l2boost}}, \code{\link{plot.l2boost}},
-  \code{\link{predict.l2boost}} methods of l2boost and
-  \code{\link{cv.l2boost}} for K fold cross validation of
+  \code{\link{predict.l2boost}},
+  \code{\link{coef.l2boost}},
+  \code{\link{residuals.l2boost}},
+  \code{\link{fitted.l2boost}} methods of l2boost and
+  \code{\link{cv.l2boost}} for K fold cross-validation of
   the l2boost method.
 }
 

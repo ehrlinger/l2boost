@@ -1,17 +1,17 @@
 # This is a hidden function of the l2boost package.
 
-#' l2boost internal method to get l2boost-lars limiting solution. This function is detailed in
-#' section 4.7 of Ehrlinger 2011
-#' 
-#' @param rho.m vector of gradient corellations to this point (m)
-#' @param corr.x correlation matrix
-#' @param activeS Acrive set
-#' @param qr.tol the tolerance for detecting linear dependencies in the qr.solve
-#' @param eps.tol limiting value for dynamic boosting step size
-#' 
-#' @references Ehrlinger (2011). Regularization: Stagewise Regression and Bagging, Ph.D. Dissertation, Case Western Reserve University
-#' 
-#' @seealso \code{\link{qr.solve}}
+# l2boost internal method to get l2boost-lars limiting solution. This function is detailed in
+# section 4.7 of Ehrlinger 2011
+# 
+# @param rho.m vector of gradient corellations to this point (m)
+# @param corr.x correlation matrix
+# @param activeS Acrive set
+# @param qr.tol the tolerance for detecting linear dependencies in the qr.solve
+# @param eps.tol limiting value for dynamic boosting step size
+# 
+# @references Ehrlinger (2011). Regularization: Stagewise Regression and Bagging, Ph.D. Dissertation, Case Western Reserve University
+# 
+# @seealso \code{\link{qr.solve}}
 
 get.lars.solution <- function(rho.m, corr.x, activeS, qr.tol, eps.tol) {
   rhom.sign <- sign(rho.m[activeS])

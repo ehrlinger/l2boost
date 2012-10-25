@@ -1,29 +1,41 @@
 Package: l2boost
 Type: Package
-Title: Efficient boosting with l2-loss function and coordinate
-    direction basis functions.
-Version: 0.15
-Date: 2012-08-17
+Title: l2boost - Freidman's boosting algorithm for regularized linear regression
+Version: 0.19
+Date: 2012-08-28
 Authors@R: c(person("John", "Ehrlinger", role=c("aut", "cre"),
     email="john.ehrlinger@gmail.com"), person("Hemant", "Ishwaran",
     role="aut"))
-Description: Coordinate descent boosting using an l2-loss function
+Description: Efficient implementation of Freidman's boosting algorithm with
+    l2-loss function and coordinate direction (design matrix columns) basis
+    functions.
 License: GPL (>=2)
 Depends:
     R (>= 2.14.0),
     MASS,
     parallel
+Packaged: 2012-05-07 18:39:07 UTC; ehrlinj
+Author: John Ehrlinger [aut, cre],
+    Hemant Ishwaran [aut]
+Maintainer: John Ehrlinger <john.ehrlinger@gmail.com>
 Collate:
+    'VAR.R'
     'break.ties.R'
+    'coef.l2boost.R'
     'cv.l2boost.R'
+    'diabetes.R'
+    'elasticNetSim.R'
     'error.bars.R'
     'eval.fold.R'
     'extract.corr.R'
+    'fitted.l2boost.R'
     'get.discrete.solution.R'
     'get.hybrid.solution.R'
     'get.lars.solution.R'
+    'help.R'
     'l2boost.R'
     'mstep.long.R'
+    'mvnorm.l2boost.R'
     'nu.limit.R'
     'plot.l2boost.R'
     'plot.lines.R'
@@ -31,18 +43,7 @@ Collate:
     'print.l2boost.R'
     'print.summary.l2boost.R'
     'resample.R'
+    'residuals.l2boost.R'
     'summary.l2boost.R'
-    'VAR.R'
     'which.max.ind.R'
     'which.min.ind.R'
-    'coef.l2boost.R'
-    'diabetes.R'
-    'fitted.l2boost.R'
-    'help.R'
-    'mvnorm.l2boost.R'
-    'residuals.l2boost.R'
-    'elasticNetSim.R'
-Packaged: 2012-05-07 18:39:07 UTC; ehrlinj
-Author: John Ehrlinger [aut, cre],
-    Hemant Ishwaran [aut]
-Maintainer: John Ehrlinger <john.ehrlinger@gmail.com>

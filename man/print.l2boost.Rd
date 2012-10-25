@@ -1,19 +1,28 @@
 \name{print.l2boost}
 \alias{print.l2boost}
-\title{print method for l2boost objects}
+\title{print method for \code{\link{l2boost}} and \code{\link{cv.l2boost}} objects.}
 \usage{
-  \method{print}{l2boost} (x, ...)
+  \method{print}{l2boost} (x, m = NULL, ...)
 }
 \arguments{
   \item{x}{an l2boost object}
 
-  \item{...}{other arguments (not used)}
+  \item{m}{return the result from iteration m}
+
+  \item{...}{other arguments passed to helper functions}
 }
 \description{
-  print method for l2boost objects
+  \code{\link{print}} is a generic function for displaying
+  model summaries
+
+  \code{\link{print.l2boost}} returns a model summary for
+  \code{\link{l2boost}} and \code{\link{cv.l2boost}}
+  objects including the coefficient estimates at the
+  specified step m. By default, \emph{print.l2boost}
+  returns the summary for the object at the final iteration
+  step M
 }
 \examples{
-\dontrun{
 #--------------------------------------------------------------------------
 # Example 1: Diabetes
 #
@@ -22,7 +31,15 @@
 data(diabetes)
 
 object <- l2boost(diabetes$x,diabetes$y, M=1000, nu=.01)
+
+# A summary of the l2boost object at M=1000
 print(object)
+
+# Similar at m=100
+print(object, m=100)
 }
+\seealso{
+  \code{\link{l2boost}}, \code{\link{cv.l2boost}} and
+  \code{\link{coef.l2boost}}
 }
 

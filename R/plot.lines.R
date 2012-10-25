@@ -1,14 +1,14 @@
 # This is a hidden function of the l2boost package.
 
-#' plots.lines is used by \code{\link{plot.l2boost}} to the path lines (each j, against each r-step)
-#' 
-#' @param xval vector of x-values corresponding to the path y-values (default: NULL index of path)
-#' @param ind Coordinate of the path (for coloring individual paths)
-#' @param path Plot the path values along the y-axis
-#' @param l.crit change the color at the value of m=l.crit
-#' @param active active set coloring (default: TRUE)
-#' @param col vector of color values lnegth >= 1 (default: NULL use built in scheme)
-#' 
+# plots.lines is used by \code{\link{plot.l2boost}} to the path lines (each j, against each r-step)
+# 
+# @param xval vector of x-values corresponding to the path y-values (default: NULL index of path)
+# @param ind Coordinate of the path (for coloring individual paths)
+# @param path Plot the path values along the y-axis
+# @param l.crit change the color at the value of m=l.crit
+# @param active active set coloring (default: TRUE)
+# @param col vector of color values lnegth >= 1 (default: NULL use built in scheme)
+# 
 
 plot.lines <- function (xval = NULL, ind, path, l.crit, active = TRUE, col=NULL) {
   M <- length(path)

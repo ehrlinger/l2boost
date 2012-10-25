@@ -1,10 +1,10 @@
 # This is a hidden function of the l2boost package.
 
-#' l2boost internal method to get hybrid solution (step size, critical value)
+# l2boost internal method to get hybrid solution (step size, critical value)
 
-#' @param rho.m vector of gradient corellations to this point (m)
-#' @param corr.x correlation matrix
-#' @param lr current step direction
+# @param rho.m vector of gradient corellations to this point (m)
+# @param corr.x correlation matrix
+# @param lr current step direction
 
 get.hybrid.solution <- function(rho.m, corr.x, lr) {
   
