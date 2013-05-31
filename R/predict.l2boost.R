@@ -1,9 +1,9 @@
-#' predict method for l2boost objects.
+#' @title predict method for l2boost models.
 #'
 #' @description \code{\link{predict}} is a generic function for predictions from the results 
 #' of various model fitting functions. 
 #' 
-#' \code{\link{predict.l2boost}} takes the optional \emph{xnew} (equivalent \emph{newdata}) \code{\link{data.frame}}
+#'  @details \code{\link{predict.l2boost}} takes the optional \emph{xnew} (equivalent \emph{newdata}) \code{\link{data.frame}}
 #' and returns the model estimates from an \code{\link{l2boost}} object. If neither \emph{xnew} or \emph{newdata} are
 #' provided, \code{\link{predict}} returns estimates for the \code{\link{l2boost}} training data set.
 #'

@@ -12,40 +12,62 @@
 #' 
 l2boost <- function(x, ...)UseMethod("l2boost")
 #
-#' @title Generic gradient descent boosting method [Friedman (2001)] for linear regression.
+#' @title Generic gradient descent boosting method for linear regression.
 #' 
-#' @description Efficient implementation of Freidman's boosting algorithm with l2-loss function and coordinate
-#'  direction (design matrix columns) basis functions
+#' @description Efficient implementation of Freidman's boosting algorithm  [Friedman (2001)] with L2-loss function and coordinate
+#'  direction (design matrix columns) basis functions. This includes the elasticNet data augmentation of Ehrlinger and Ishwaran (2012), 
+#'  which adds an L2-penalization (lambda) similar to the elastic net [Zou and Hastie (2005)].
 #' 
 #' @details
 #'  The \code{\link{l2boost}} function is an efficient implementation of a generic boosting method [Friedman (2001)] for
-#' linear regression using an l2-loss function. The basis functions are the column vectors of the design matrix. 
+#' linear regression using an L2-loss function. The basis functions are the column vectors of the design matrix. 
 #' \code{\link{l2boost}} scales the design matrix such that the coordinate columns of the design correspond to the
 #' gradient directions for each covariate. The boosting coefficients are equivalent to the gradient-correlation of each 
 #' covariate. Friedman's gradient descent boosting algorithm proceeds at each step along the covariate direction closest
 #' (in L2 distance) to the maximal gradient descent direction.
 #' 
-#' \code{\link{l2boost}} keeps track of all gradient-coorelation coefficients at each iteration in addition to the maximal
-#' descent direction taken by the method. These cab be used to demonstrate the inner workings of gradient boosting (see
-#' the examples in the \code{\link{plot.l2boost}} method).
+#' We include a series of algorithms to solve the boosting optimization. These are selected through the \emph{type} argument
+#' \itemize{
+#'  \item \emph{friedman} - The original, bare-bones l2boost (Friedman (2001)). This method takes a fixed step size of length
+#'    \emph{nu}.
+#' \item \emph{lars} - The l2boost-lars-limit (See Efron et.al (2004)). This algorithm takes a single step of the 
+#'   optimal length to the critical point required for a new coordinate direction to become favorable. Although optimal
+#'   in the number of steps required to reach the OLS solution, this method may be computationaly expensive for large p
+#'   problems, as the method requires a matrix inversion to calculate the step length. 
+#' \item \emph{discrete} - Optimized Friedman algorithm to reduce number of evaluations required 
+#'   [Ehrlinger and Ishwaran 2012]. The algorithm dynamically determines the number of steps of length \emph{nu} to take along
+#'   a descent direction. The discrete method allows the algorithm to take step sizes of multiples of \emph{nu} at any evaluation.
+#' \item \emph{hybrid} - Similar to discrete, however only allows combining steps along the first descent direction. 
+#'   \emph{hybrid} Works best if \emph{nu} is moderate, but not too small. In this case, Friedman's algorithm would take 
+#'   many steps along the first coordinate direction, and then cycle when multiple coordinates have similar gradient 
+#'   directions (by the L2 measure).
+#' }
+#' 
+#' \code{\link{l2boost}} keeps track of all gradient-coorelation coefficients (\emph{rho}) at each iteration in addition to the maximal
+#' descent direction taken by the method. Visuallizing these coefficients can be informative of the inner workings of gradient boosting 
+#' (see the examples in the \code{\link{plot.l2boost}} method).
 #' 
 #' The \code{\link{l2boost}} function uses an arbitrary L1-regularization parameter (nu), and includes the elementary 
 #' data augmentation of Ehrlinger and Ishwaran (2012), to add an L2-penalization (lambda) similar to the elastic net 
 #' [Zou and Hastie (2005)]. The L2-regularization reverses repressibility, a condition where one variable acts as 
 #' a boosting surrogate for other, possibly informative, variables. Along with the decorrelation 
-#' effect, this elasticBoost regularization circumvents L2Boost deficiencies in correlated settings. 
+#' effect, this \emph{elasticBoost} regularization circumvents L2Boost deficiencies in correlated settings. 
 #' 
 #' We include a series of S3 functions for working  with \code{\link{l2boost}} objects:
 #' \itemize{
-#' \item \code{\link{print}} (\code{\link{print.l2boost}}) prints a summary of the fit,
-#' \item \code{\link{coef}} (\code{\link{coef.l2boost}}) returns the model regression coefficients. 
-#' \item \code{\link{fitted}} (\code{\link{fitted.l2boost}}) returns the fitted response values from the training set, 
-#' \item \code{\link{residuals}} (\code{\link{residuals.l2boost}}) returns the training set residuals,
-#' \item \code{\link{plot}} (\code{\link{plot.l2boost}}) for graphing,
-#' \item \code{\link{predict}} (\code{\link{predict.l2boost}}) for prediction on possibly new observations,
+#' \item \code{\link{print}} (\code{\link{print.l2boost}}) prints a summary of the \code{\link{l2boost}} fit.
+#' \item \code{\link{coef}} (\code{\link{coef.l2boost}}) returns the \code{\link{l2boost}} model regression coefficients at any point 
+#' along the solution path. 
+#' \item \code{\link{fitted}} (\code{\link{fitted.l2boost}}) returns the fitted \code{\link{l2boost}} response estimates (from
+#' the training dataset) along the solution path. 
+#' \item \code{\link{residuals}} (\code{\link{residuals.l2boost}}) returns the training set \code{\link{l2boost}} residuals along the
+#' solution path.
+#' \item \code{\link{plot}} (\code{\link{plot.l2boost}}) for graphing model cofficients of an \code{\link{l2boost}} object.
+#' \item \code{\link{predict}} (\code{\link{predict.l2boost}}) for generating \code{\link{l2boost}} prediction estimates on possibly 
+#' new test set observations.
 #' }
-#' A cross-validation method (\code{\link{cv.l2boost}}) is also included for L2boost and elasticBoost 
-#' cross-validating regularization parameter optimizations.
+#' A cross-validation method (\code{\link{cv.l2boost}}) is also included for L2boost and elasticBoost, for cross-validated error estimats 
+#' and regularization parameter optimizations.
 #'
 #' @references Friedman J. (2001) Greedy function approximation: A gradient boosting machine. \emph{Ann. Statist.}, 29:1189-1232
 #' @references Ehrlinger J., and Ishwaran H. (2012). "Characterizing l2boosting" \emph{Ann. Statist.}, 40 (2), 1074-1101
@@ -65,17 +87,9 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #'    a data frame) containing the variables in the model used in the
 #'    \code{\link{formula}}.
 #' @param M number of steps to run boost algorithm (M >1)
-#' @param nu l1 shrinkage parameter (0 < nu <= 1)
-#' @param lambda l2 shrinkage parameter used for elastic net boosting (lambda > 0 || lambda = NULL)
-#' @param type Choice of l2boost algorithm from "discrete", "hybrid", "friedman","lars". (default "discrete")
-#' \itemize{
-#' \item \emph{discrete} - Optimized Friedman to reduce number of evaluations. dynamically determine number of steps to take 
-#' along a descent direction. Discrete allows the algorithm to take step sizes of multiples of nu at any evaluation.
-#' \item \emph{hybrid} - Similar to discrete, however only allows combining steps along the first descent direction. Works best if nu 
-#' is moderate but not too small.
-#' \item \emph{friedman} - Original, bare-bones l2boost (Friedman (2001))
-#' \item \emph{lars} - Get the l2boost-lars-limit (See Efron et.al (2004))
-#' }
+#' @param nu L1 shrinkage parameter (0 < nu <= 1)
+#' @param lambda L2 shrinkage parameter used for elastic net boosting (lambda > 0 || lambda = NULL)
+#' @param type Choice of l2boost algorithm from "discrete", "hybrid", "friedman","lars". See details below. (default "discrete")
 #' @param qr.tolerance tolerance limit for use in \code{\link{qr.solve}} (default: 1e-30)
 #' @param eps.tolerance dynamic step size lower limit (default: .Machine$double.eps)
 #' @param trace show runtime messages (default: FALSE)
@@ -84,8 +98,8 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' @return A "l2boost" object is returned, for which print, plot, predict, and coef methods exist.
 #' \item{call}{the matched call.}
 #' \item{type}{Choice of l2boost algorithm from "friedman", "discrete", "hybrid", "lars"}
-#' \item{nu}{The l1 boosting shrinkage parameter value}    
-#' \item{lambda}{The l2 elasticNet shrinkage parameter value}  
+#' \item{nu}{The L1 boosting shrinkage parameter value}    
+#' \item{lambda}{The L2 elasticNet shrinkage parameter value}  
 #' \item{x}{The training dataset}
 #' \item{x.na}{Columns of original design matrix with values na, these have been removed from x}
 #' \item{x.attr}{scale attributes of design matrix}
@@ -102,7 +116,8 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' \item{rhom.path}{boosting parameter estimate at each step m}   
 #' \item{betam.path}{beta parameter estimates at each step m. List of m vectors of length p}
 #' \item{betam}{beta parameter estimate at final step M}
-#'
+#' The notation for the return values is described in Ehrlinger and Ishwaran (2012).
+#' 
 #' @seealso \code{\link{print.l2boost}}, \code{\link{plot.l2boost}}, \code{\link{predict.l2boost}}, 
 #' \code{\link{coef.l2boost}}, \code{\link{residuals.l2boost}}, \code{\link{fitted.l2boost}} methods of l2boost 
 #' and \code{\link{cv.l2boost}} for K fold cross-validation of the l2boost method. 
@@ -154,7 +169,7 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' # Then zoom into the first m=500 steps
 #' plot(l2.object, xlim=c(0,500), ylim=c(.25,.5), main="l2Boost nu=1.e-3")
 #' 
-#' # elasticNet same data with l1 parameter lambda=0.1
+#' # elasticNet same data with L1 parameter lambda=0.1
 #' en.object <- l2boost(dta$x,dta$y,M=10000, nu=1.e-3, lambda=.1) 
 #' 
 #' # plot the elasticNet trajectories over all M

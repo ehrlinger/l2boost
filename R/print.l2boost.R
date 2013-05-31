@@ -7,7 +7,7 @@
 #' @description \code{\link{print}} is a generic function for displaying model summaries
 #' 
 #' \code{\link{print.l2boost}} returns a model summary for \code{\link{l2boost}} and \code{\link{cv.l2boost}} objects including 
-#' the coefficient estimates at the specified step m. By default, \emph{print.l2boost} returns the summary for the
+#' the coefficient estimates at the specified step m. By default, \code{\link{print.l2boost}} returns the summary for the
 #' object at the  final iteration step M
 #'
 #' @param x an l2boost object 

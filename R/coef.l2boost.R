@@ -1,23 +1,22 @@
-#' Extract model coefficients from an l2boost model object.
+#' @title Extract model coefficients from an l2boost model object at any point along the solution path indexed by step m.
 #'  
-#' @description \code{\link{coef}} is a generic function which extracts model coefficients from objects returned 
-#' by modeling functions. 
+#' @details \code{\link{coef}} is a generic function which extracts model coefficients from objects returned by modeling functions. 
 #' 
 #' By default, \code{\link{coef.l2boost}} returns the model (beta) coefficients from the last step, 
 #' M of the \code{\link{l2boost}} model. For a \code{\link{cv.l2boost}} object, the default returns the coefficients from 
-#' full model, at the cross-validation optimal step (\emph{m = opt.step} return value).
+#' model at the cross-validation optimal step (\emph{m = opt.step} return value).
 #'  
-#' Coefficients from alternative steps can be obtained using the \emph{m} parameter. 
+#' Coefficients from alternative steps along the solution can be obtained using the \emph{m} parameter. 
 #'  
-#' @param object an l2boost fit object
-#' @param m the iteration number within the l2boost path. If m=NULL, the coefficients are obtained from the last iteration M.
-#' @param ... generic arguments passed to parent function
+#' @param object an l2boost fit object (\code{\link{l2boost}} or \code{\link{cv.l2boost}})
+#' @param m the iteration number within the l2boost solution path. If m=NULL, the coefficients are obtained from the last iteration M.
+#' @param ... other arguments passed to generic function.
 #'
 #' @seealso \code{\link{coef}} and \code{\link{l2boost}}, \code{\link{cv.l2boost}} and 
-#'  \code{\link{predict.l2boost}} methods of l2boost
+#'  \code{\link{predict.l2boost}} methods of l2boost.
 #' 
 #' @return vector of coefficient estimates for \code{\link{l2boost}} objects. 
-#' The estimates correspond to the given iteration \emph{m}.
+#' The estimates correspond to the given iteration number \emph{m}, or the final step \emph{M}.
 #'
 #' @examples
 #' #--------------------------------------------------------------------------

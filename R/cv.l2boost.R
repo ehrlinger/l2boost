@@ -8,21 +8,23 @@
 #'  
 #' @description Calculate the K-fold cross-validation prediction error for \code{\link{l2boost}} models.
 #' The prediction error is calculated using mean squared error (MSE). The optimal boosting step (\emph{m=opt.step})
-#' is obtained by selecting the step with the minimal MSE. 
+#' is obtained by selecting the step \emph{m} resulting in the minimal MSE. 
 #' 
 #' @details
-#' The cross-validation method splits the test data set into K subsets. An \code{\link{l2boost}} model 
-#' is built on K training data sets, each created from the full data set by sequentially leaving out one of the
-#' K subsets. The prediction error estimate is calculated by averaging the mean square error over each of the 
-#' training dataset. The optimal step is obtained at the minimal averaged mean square error step.
+#' The cross-validation method splits the test data set into K mutually exclusive subsets. An \code{\link{l2boost}} model 
+#' is built on K different training data sets, each created from a subsample of the full data set by sequentially leaving 
+#' out one of the K subsets. The prediction error estimate is calculated by averaging the mean square error of each K test 
+#' sets of the all of the K training datasets. The optimal step \emph{m} is obtained at the step with a minimal averaged 
+#' mean square error.
 #' 
-#' The full l2boost model is run after the cross-validation models. This model is also built over the full number
-#' of iteration steps \emph{M} and returned in the cv.l2boost$fit object. 
+#' The full \code{\link{l2boost}} model is run after the cross-validation models, on the full dateset. This model is
+#' run for the full number of iteration steps \emph{M} and returned in the cv.l2boost$fit object. 
 #' 
 #' \code{\link{cv.l2boost}} only optimizes along the iteration count \emph{m} for a given value of \emph{nu}. This is
-#' equivalent to an L1-regularization optimization. In order to optimize on the L2-regularization parameter lambda, 
-#' a manual two way cross-validation can be obtained by sequentially optimizing over a range of lambda values, and
-#' selecting the lambda/opt.step pair resulting in the minimal cross-validated mean square error.
+#' equivalent to an L1-regularization optimization. In order to optimize an elasticBoost model on the L2-regularization 
+#' parameter lambda, a manual two way cross-validation can be obtained by sequentially optimizing over a range of lambda 
+#' values, and selecting the lambda/opt.step pair resulting in the minimal cross-validated mean square error. See the 
+#' examples below.
 #' 
 #' \code{\link{cv.l2boost}} uses the parallel package internally to speed up the cross-validation process on multicore 
 #' machines. Parallel is packaged with base R >= 2.14, for earlier releases the multicore package provides the same 
@@ -49,16 +51,16 @@
 #' @return A list of cross-validation results:
 #'  \item{call}{the matched call.}   
 #'  \item{type}{Choice of l2boost algorithm from  "discrete", "hybrid", "friedman","lars". see \code{\link{l2boost}}}       
-#'  \item{names}{design matrix column names}
-#'  \item{nu}{The l1 boosting shrinkage parameter value}
-#'  \item{lambda}{The l2 elasticBoost shrinkage parameter value}                   
-#'  \item{K}{number of folds for cross-validation}             
-#'  \item{mse}{Optimal cross-validation mean square error}      
-#'  \item{mse.list}{list of \emph{K} vectors of mean square errors for each step \emph{m}}            
+#'  \item{names}{design matrix column names used in the model}
+#'  \item{nu}{The L1 boosting shrinkage parameter value}
+#'  \item{lambda}{The L2 elasticBoost shrinkage parameter value}                   
+#'  \item{K}{number of folds used for cross-validation}             
+#'  \item{mse}{Optimal cross-validation mean square error estimate }      
+#'  \item{mse.list}{list of \emph{K} vectors of mean square errors at each step \emph{m}}            
 #'  \item{coef}{beta coefficient estimates from the full model at opt.step}     
 #'  \item{coef.stand}{standardized beta coefficient estimates from full model at opt.step}    
-#'  \item{opt.step}{optimal step m calculated by minimizing cross-validation error}           
-#'  \item{opt.norm}{l1 norm of beta coefficients at opt.step}        
+#'  \item{opt.step}{optimal step m calculated by minimizing cross-validation error among all K training sets}           
+#'  \item{opt.norm}{L1 norm of beta coefficients at opt.step}        
 #'  \item{fit}{\code{\link{l2boost}} fit of full model}
 #'  \item{yhat}{estimate of response from full model at opt.step}      
 #' 
@@ -151,13 +153,19 @@ cv.l2boost <- function(x, y, K = 10, M = NULL, nu = 1e-4, lambda = NULL, trace =
       eval.fold(k, K = K, all.folds = all.folds, x = x, y = y, M = M, nu = nu,
                 lambda = lambda, trace = trace, type = type, ...=...)})
   }else{
-    # clusterApply() for Windows
+    
     if (Sys.info()[1] == "Windows"){
-      cl <- makeCluster(cores)
-      eval.fold.obj <-clusterApply(cl=cl, k=1:length(all.folds), function(k) {
+      ## clusterApply() for Windows
+      #       cl <- makeCluster(cores)
+      #       eval.fold.obj <-clusterApply(cl=cl, k=1:length(all.folds), function(k) {
+      #         eval.fold(k, K = K, all.folds = all.folds, x = x, y = y, M = M, nu = nu,
+      #                   lambda = lambda, trace = trace, type = type, ...=...)})
+      #       stopCluster(cl) # Don't forget to do this--I frequently do
+      #      
+      ## clusterApply() fails the build_win script, let's try it in serial.
+      eval.fold.obj <-lapply(1:length(all.folds), function(k) {
         eval.fold(k, K = K, all.folds = all.folds, x = x, y = y, M = M, nu = nu,
                   lambda = lambda, trace = trace, type = type, ...=...)})
-      stopCluster(cl) # Don't forget to do this--I frequently do
       
       # mclapply() for everybody else
     } else {

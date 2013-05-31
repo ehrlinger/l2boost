@@ -1,4 +1,4 @@
-#' @title Model residuals for the training set of an \code{\link{l2boost}} model object
+#' @title Model residuals for the training set of an l2boost model object
 #'
 #' @description \code{\link{residuals}} is a generic function which extracts model residuals 
 #' from objects returned by modeling functions.

@@ -4,16 +4,29 @@
 # This is to encapsulate all simulation dataset in the application file
 #---------------------------------------------------------------------
 
-#' @title Data simulations from Ehrlinger and Ishwaran (2012).
+#' @title multivariate normal data simulations.
 #'
-#' @description Simulated data from a multivariate normal.
+#' @description Create simulated dataset from a multivariate normal. Used to recreate data simulations
+#'  from Ehrlinger and Ishwaran (2012).
 #' 
 #' @param n number of observations
 #' @param p number of coordinate directions in the design matrix
-#' @param beta a "true" beta vector of length p
-#' @param which.beta indicator vector for which beta coefficients to include in simulation
-#' @param rho between coordinate direction correlation coefficient
+#' @param beta a "true" beta vector of length p (default=NULL) See details.
+#' @param which.beta indicator vector for which beta coefficients to include as signal in simulation (default=NULL) see details
+#' @param rho correlation coefficient between coordinate directions 
 #'
+#' @details By default, mvnorm.l2boost creates a data set of n multivariate normal random observations of p covariates 
+#' (see MASS:mvrnorm). The correlation matrix is constructed with 1 on the diagonals and the correlation 
+#' coefficient \emph{rho} on the off diagonals. 
+#' 
+#' The response is constructed as follows: If a true beta vector is not supplied, the first 10 beta coefficients carry 
+#' the signal with a value of 5, and the remaining p-10 values are set to zero. Given a \emph{beta.true} vector, all 
+#' values are used as specified. The coefficent vector is truncated to have \emph{p} signal terms if 
+#' length(\emph{beta.true}) > \emph{p}, and noise coordinates are added if length(\emph{beta.true}) < \emph{p}.
+#' 
+#' It is possible to pass an indicator vector \emph{which.beta} to select specific signal elements from the 
+#' full vector \emph{beta.true}. 
+#' 
 #' @return 
 #' \itemize{
 #' \item call Matched function call

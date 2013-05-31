@@ -19,21 +19,21 @@
 #' 
 #' We include a series of S3 functions for working  with \code{\link{l2boost}} objects:
 #' \itemize{
-#' \item \code{\link{print}} (\code{\link{print.l2boost}}) prints a summary of the fit,
-#' \item \code{\link{coef}} (\code{\link{coef.l2boost}}) returns the model regression coefficients. 
-#' \item \code{\link{fitted}} (\code{\link{fitted.l2boost}}) returns the fitted response values from the training set, 
-#' \item \code{\link{residuals}} (\code{\link{residuals.l2boost}}) returns the training set residuals,
-#' \item \code{\link{plot}} (\code{\link{plot.l2boost}}) for graphing,
-#' \item \code{\link{predict}} (\code{\link{predict.l2boost}}) for prediction on possibly new observations,
+#' \item \code{\link{print}} (\code{\link{print.l2boost}}) prints a summary of the l2boost model fit.
+#' \item \code{\link{coef}} (\code{\link{coef.l2boost}}) returns the model regression coefficients at any point along the solution path indexed by step m. 
+#' \item \code{\link{fitted}} (\code{\link{fitted.l2boost}}) returns the fitted response values from the training set at any point along the solution path.
+#' \item \code{\link{residuals}} (\code{\link{residuals.l2boost}}) returns the training set residuals at any point along the solution path.
+#' \item \code{\link{plot}} (\code{\link{plot.l2boost}}) for graphing either beta coefficients or gradient-correlation as a function of boosting steps.
+#' \item \code{\link{predict}} (\code{\link{predict.l2boost}}) for boosting prediction on possibly new observations at any point along the solution path.
 #' }
 #' A cross-validation method (\code{\link{cv.l2boost}}) is also included for L2boost and elasticBoost 
 #' cross-validating regularization parameter optimizations.
 #'
 #' \emph{Example Datasets}
-#' We have repackaged the \code{\link{diabetes}} data set from Efron et. al. (2004) for demonstration purposes. We also 
-#' include simulation functions for reproducing the elastic net simulation (\code{\link{elasticNetSim}}) of 
-#' Zou and Hastie (2005) and the example multivariate normal simulations (\code{\link{mvnorm.l2boost}}) of 
-#' Ehrlinger and Ishwaran (2012).
+#' We have repackaged the \code{\link{diabetes}} data set from Efron et. al. (2004) for demonstration purposes.
+#' We also include data simulation functions for reproducing the elastic net 
+#' simulation (\code{\link{elasticNetSim}}) of Zou and Hastie (2005) and the example multivariate normal simulations
+#' (\code{\link{mvnorm.l2boost}}) of Ehrlinger and Ishwaran (2012).
 #' 
 #' @references Friedman J. (2001) Greedy function approximation: A gradient boosting machine. \emph{Ann. Statist.}, 29:1189-1232
 #' @references Ehrlinger J., and Ishwaran H. (2012). "Characterizing l2boosting" \emph{Ann. Statist.}, 40 (2), 1074-1101

@@ -11,7 +11,7 @@
 #' @description 
 #' plotting methods for \code{\link{l2boost}} objects (\code{\link{l2boost}} and \code{\link{cv.l2boost}}). 
 #' 
-#' By default, plotting an \code{\link{l2boost}} object produces a gradient-correlation vs iterations step (m) plot.
+#' By default, plotting an \code{\link{l2boost}} object produces a gradient-correlation vs iteration steps (m) plot.
 #' Plotting a \code{\link{cv.l2boost}} object produces a cross-validation error plot, and prints the minimal CV MSE value
 #' and optimal step opt.step to the R console.
 #' 

@@ -1,18 +1,19 @@
-#' @title Extract the model estimates for the l2boost training set.
+#' @title Extract the fitted model estimates along the solution path for an l2boost model.
 #' 
-#' @description \code{\link{fitted}} is a generic function which extracts fitted values from objects 
+#' @details \code{\link{fitted}} is a generic function which extracts fitted values from objects 
 #' returned by modeling functions. 
 #' 
 #' \code{\link{fitted.l2boost}} returns the function estimates obtained 
-#' from  the training set observations of an l2boost model object, F_m(x) evaluated at 
-#' iteration m using the training data set x. By default, \code{\link{fitted.l2boost}} returns the estimate
-#' at the last iteration M, unless a specific iteration step m is specified.
+#' from  the training set observations of an l2boost model object at any point along the solution path. 
+#' The estimate, F_m(x) is evaluated at iteration m using the training data set x. By default, 
+#' \code{\link{fitted.l2boost}} returns the estimate at the last iteration step M, unless a specific 
+#' iteration step m is specified.
 #' 
 #' @param object an l2boost object
 #' @param m the iteration number with the l2boost path. (defualt m=NULL)
 #' @param ... other arguments
 #'
-#' @return returns the vector of response value estimates at the given iteration m. By default,
+#' @return The vector of fitted response estimates at the given iteration m. By default,
 #'  the coefficients are obtained from the last iteration m=M.
 #'
 #' @seealso \code{\link{fitted}} and \code{\link{l2boost}} and \code{\link{predict.l2boost}}
