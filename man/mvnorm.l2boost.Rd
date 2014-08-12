@@ -1,0 +1,80 @@
+\name{mvnorm.l2boost}
+\alias{mvnorm.l2boost}
+\title{multivariate normal data simulations.}
+\usage{
+  mvnorm.l2boost(n = 100, p = 100, beta = NULL,
+    which.beta = NULL, rho = 0)
+}
+\arguments{
+  \item{n}{number of observations}
+
+  \item{p}{number of coordinate directions in the design
+  matrix}
+
+  \item{beta}{a "true" beta vector of length p
+  (default=NULL) See details.}
+
+  \item{which.beta}{indicator vector for which beta
+  coefficients to include as signal in simulation
+  (default=NULL) see details}
+
+  \item{rho}{correlation coefficient between coordinate
+  directions}
+}
+\value{
+  \itemize{ \item call Matched function call \item x design
+  matrix of size \emph{n} x \emph{p} \item y response
+  vector of length \emph{n} }
+}
+\description{
+  Create simulated dataset from a multivariate normal. Used
+  to recreate data simulations from Ehrlinger and Ishwaran
+  (2012).
+}
+\details{
+  By default, mvnorm.l2boost creates a data set of n
+  multivariate normal random observations of p covariates
+  (see MASS:mvrnorm). The correlation matrix is constructed
+  with 1 on the diagonals and the correlation coefficient
+  \emph{rho} on the off diagonals.
+
+  The response is constructed as follows: If a true beta
+  vector is not supplied, the first 10 beta coefficients
+  carry the signal with a value of 5, and the remaining
+  p-10 values are set to zero. Given a \emph{beta.true}
+  vector, all values are used as specified. The coefficent
+  vector is truncated to have \emph{p} signal terms if
+  length(\emph{beta.true}) > \emph{p}, and noise
+  coordinates are added if length(\emph{beta.true}) <
+  \emph{p}.
+
+  It is possible to pass an indicator vector
+  \emph{which.beta} to select specific signal elements from
+  the full vector \emph{beta.true}.
+}
+\examples{
+#--------------------------------------------------------------------------
+# Example: Multivariate normal data simulation
+
+# Create a (reproducable) data set of size 100 x 100
+set.seed(1024)
+n<- 100
+p<- 100
+
+# Set 10 signal variables using a uniform beta=5, the remaining (p-10)=90 are
+# set to zero indicating random noise.
+beta <- c(rep(5,10), rep(0,p-10))
+
+# Example with orthogonal design matrix columns (orthogonal + noise)
+ortho.data <- mvnorm.l2boost(n, p, beta)
+cbind(ortho.data$y[1:5],ortho.data$x[1:5,])
+
+# Example with correlation between design matrix columns
+corr.data <- mvnorm.l2boost(n, p, beta, rho=0.65)
+cbind(corr.data$y[1:5],corr.data$x[1:5,])
+}
+\references{
+  Ehrlinger J., and Ishwaran H. (2012). "Characterizing
+  l2boosting" \emph{Ann. Statist.}, 40 (2), 1074-1101
+}
+
