@@ -184,8 +184,7 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' 
 #' @rdname l2boost
 #' @name l2boost
-#' @method l2boost default
-#' @S3method l2boost default
+#' @export l2boost.default
 l2boost.default <- function(x, y,
                             M = NULL, nu = 1e-4, lambda = NULL, trace = FALSE, 
                             type = c("discrete", "hybrid", "friedman","lars"),
@@ -472,8 +471,7 @@ l2boost.default <- function(x, y,
 #' 
 #' @aliases l2boost.formula l2boost.default
 #' 
-#' @method l2boost formula
-#' @S3method l2boost formula
+#' @export l2boost.formula
 l2boost.formula <- function(formula, data, ...){  
     mf <- model.frame(formula=formula, data=data)
     x<- model.matrix(attr(mf, "terms"), data=mf)

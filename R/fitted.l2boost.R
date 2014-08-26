@@ -54,8 +54,7 @@
 #'   type="l", lty=2, col="red", lwd=2)
 #' abline(h=0, lty=2, col = 'gray')
 #' 
-#' @method fitted l2boost
-#' @S3method fitted l2boost
+#' @export fitted.l2boost
 #' 
 fitted.l2boost <- function(object, m=NULL, ...){
   if(inherits(object, "cv")){

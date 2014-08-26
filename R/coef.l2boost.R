@@ -32,8 +32,7 @@
 #' # At the m=500 step
 #' coef(object, m=500)
 #'
-#' @method coef l2boost
-#' @S3method coef l2boost
+#' @export coef.l2boost
 #' 
 coef.l2boost <- function(object, m=NULL, ...){
   if(inherits(object, "cv")){

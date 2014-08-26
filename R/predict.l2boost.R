@@ -60,8 +60,7 @@
 #' # Or used to predict new data, in this case a subset of training data
 #' cbind(diabetes$y[1:5], predict(object, xnew=diabetes$x[1:5,])$yhat)
 #' 
-#' @method predict l2boost
-#' @S3method predict l2boost
+#' @export predict.l2boost
 predict.l2boost <- function(object, xnew = NULL, type = c("fit", "coef"), newdata=xnew, ...) {
   if(inherits(object,"cv")) object <- object$fit
   
