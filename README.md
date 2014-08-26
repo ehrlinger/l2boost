@@ -22,10 +22,10 @@ A cross-validation method (*cv.l2boost*) is also included for L2boost and elasti
 We have repackaged thediabetes data set from Efron et. al. (2004) for demonstration purposes. We also include simulation functions for reproducing the elastic net simulation (elasticNetSim) of Zou and Hastie (2005) and the example multivariate normal simulations (mvnorm.l2boost) of Ehrlinger and Ishwaran (2012).
 
 ## References
-Friedman J. (2001) Greedy function approximation: A gradient boosting machine. \emph{Ann. Statist.}, 29:1189-1232
+Friedman J. (2001) Greedy function approximation: A gradient boosting machine. (*Ann. Statist.*), 29:1189-1232
 
-Ehrlinger J., and Ishwaran H. (2012). "Characterizing l2boosting" \emph{Ann. Statist.}, 40 (2), 1074-1101
+Ehrlinger J., and Ishwaran H. (2012). "Characterizing l2boosting" (*Ann. Statist.*), 40 (2), 1074-1101
 
-Zou H. and Hastie T (2005) "Regularization and variable selection via the elastic net"  \emph{J. R. Statist. Soc. B}, 67, Part 2, pp. 301-320
+Zou H. and Hastie T (2005) "Regularization and variable selection via the elastic net" (*J. R. Statist. Soc. B*), 67, Part 2, pp. 301-320
 
-Efron B., Hastie T., Johnstone I., and Tibshirani R. (2004). "Least Angle Regression" \emph{Ann. Statist.} 32:407-499
+Efron B., Hastie T., Johnstone I., and Tibshirani R. (2004). "Least Angle Regression" (*Ann. Statist.*) 32:407-499
