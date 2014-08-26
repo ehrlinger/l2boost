@@ -18,3 +18,17 @@
                     "). l2boost: Boosting linear regression models with l2 loss. ",
                     vers, ".", sep=""))
 
+citEntry(entry="Article",
+         title  = "Characterizing l2boosting",
+         author = personList(person(last="Ehrlinger", first="H."),
+                       person(last="Ishwaran", first="H.")),
+         journal      = "Ann. Statist.",
+         year         = "2012",
+         volume       = "40",
+         number       = "2",
+         pages        = "1074--1101",
+         url          = "http://projecteuclid.org/DPubS?service=UI&version=1.0&verb=Display&handle=euclid.aos/1342625462",
+         textVersion = 
+         paste("Ehrlinger J., and Ishwaran H. (",year, 
+            ") Characterizing l2boosting. Ann. Statist., 40 (2), 1074-1101",
+               sep=""))

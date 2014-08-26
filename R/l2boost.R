@@ -14,7 +14,7 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #
 #' @title Generic gradient descent boosting method for linear regression.
 #' 
-#' @description Efficient implementation of Freidman's boosting algorithm  [Friedman (2001)] with L2-loss function and coordinate
+#' @description Efficient implementation of Friedman's boosting algorithm  [Friedman (2001)] with L2-loss function and coordinate
 #'  direction (design matrix columns) basis functions. This includes the elasticNet data augmentation of Ehrlinger and Ishwaran (2012), 
 #'  which adds an L2-penalization (lambda) similar to the elastic net [Zou and Hastie (2005)].
 #' 
@@ -141,13 +141,13 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' par(mfrow=c(2,2))
 #' plot(l2.object)
 #' plot(l2.object, type="coef")
-#'
+#' 
 #' # increased shrinkage and number of iterations.
-#' l2.shrink <- l2boost(diabetes$x,diabetes$y,M=10000, nu=1.e-3) 
+#' l2.shrink <- l2boost(diabetes$x,diabetes$y,M=5000, nu=1.e-3) 
 #' plot(l2.shrink)
 #' plot(l2.shrink, type="coef")
 #'
-#'
+#' \dontrun{
 #' #--------------------------------------------------------------------------
 #' # Example 2: elasticBoost simulation
 #' # Compare l2boost and elastic net boosting
@@ -156,8 +156,8 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' # elastic net. J. Royal Statist. Soc. B, 67(2):301-320, 2005
 #' set.seed(1025)
 #' 
-#' # The default simulation uses 40 covariates with signal concentrated on 3 groups of 5 correlated covariates
-#' # (for 15 signal covariates)
+#' # The default simulation uses 40 covariates with signal concentrated on 
+#' # 3 groups of 5 correlated covariates (for 15 signal covariates)
 #' dta <- elasticNetSim(n=100)
 #' 
 #' # l2boost the simulated data with groups of correlated coordinates
@@ -180,8 +180,7 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' # Then zoom into the first m=500 steps
 #' plot(en.object, xlim=c(0,500), ylim=c(.25,.5),
 #'   main="elasticBoost nu=1.e-3, lambda=.1")
-#' 
-#
+#' }
 #' 
 #' @rdname l2boost
 #' @name l2boost

@@ -1,5 +1,6 @@
 L2boost Package
 ========================================================
+[![DOI](https://zenodo.org/badge/5745/ehrlinger/l2boost.png)](http://dx.doi.org/10.5281/zenodo.11437)
 
 The L2boost package is an efficient implementation of Freidman's boosting algorithm for linear regression using an l2-loss function and coordinate direction (design matrix columns) basis functions. The package was developed in support of Ehrlinger and Ishwaran (2012)
 

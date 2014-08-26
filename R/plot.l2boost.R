@@ -78,7 +78,7 @@
 #' plot(l2.object, xlim=c(0,500))
 #' plot(l2.object, type="coef", xlim=c(0,500))
 #' 
-#' # notrun
+#' \dontrun{
 #' #--------------------------------------------------------------------------
 #' # Example: Plotting cross-validation objects
 #' dta <- elasticNetSim(n=100)
@@ -107,7 +107,7 @@
 #' # Show the "optimal" coefficient values, 
 #' # red points are selected in boosting algorithm.
 #' plot(coef(cv.l2$fit, m=cv.l2$opt.step), col=clr, ylab=expression(beta))
-#' 
+#' }
 #' @method plot l2boost
 #' @S3method plot l2boost
 #' 

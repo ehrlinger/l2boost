@@ -1,7 +1,7 @@
 #####################################################################################################
 # Package documentation
 #####################################################################################################
-#' @title Efficient implementation of Freidman's boosting algorithm for linear regression using an
+#' @title Efficient implementation of Friedman's boosting algorithm for linear regression using an
 #'  l2-loss function and coordinate direction (design matrix columns) basis functions.
 #' 
 #' @description

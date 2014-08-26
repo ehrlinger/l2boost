@@ -65,7 +65,7 @@
 #'  \item{yhat}{estimate of response from full model at opt.step}      
 #' 
 #' @examples
-#' 
+#' \dontrun{
 #' #--------------------------------------------------------------------------
 #' # Example: ElasticBoost simulation
 #' # Compare l2boost and elasticNetBoosting using 10-fold CV
@@ -100,8 +100,8 @@
 #'   ylab=expression(beta[i]), xlab="Column Index", ylim=c(0,140), col=sig)
 #'
 #' # elasticBoost l1-regularization parameter lambda=0.1 
-#' # 10 fold elasticNet CV
-#' cv.eBoost <- cv.l2boost(dta$x,dta$y,M=Mtarget, nu=nuTarget, lambda=.1, cores=cvCores) 
+#' # 5 fold elasticNet CV
+#' cv.eBoost <- cv.l2boost(dta$x,dta$y,M=Mtarget, K=5, nu=nuTarget, lambda=.1, cores=cvCores) 
 #' 
 #' # plot the results
 #' plot(cv.eBoost)
@@ -110,7 +110,7 @@
 #' abline(v=cv.eBoost$opt.step, lty=2, col="grey")
 #' plot(coef(cv.eBoost$fit, m=cv.obj$opt.step), cex=.5, 
 #'   ylab=expression(beta[i]), xlab="Column Index", ylim=c(0,140), col=sig)
-#' 
+#' }
 #' @export cv.l2boost
 #' @importFrom parallel mclapply
 cv.l2boost <- function(x, y, K = 10, M = NULL, nu = 1e-4, lambda = NULL, trace = FALSE, 
