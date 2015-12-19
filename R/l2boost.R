@@ -287,7 +287,7 @@ l2boost.default <- function(x, y,
     
     # extract the R_j,l correlation: only need new values
     # Do not perform this action if this lr value has been seen before
-    if (r > 1 && !any(lr == l.crit[1:(r - 1)]) ) {
+    if ( is.null(corr.x[[lr]]) ) {
       corr.x[[lr]] <- extract.corr(x, lr, enet, n.org)
     }
     
