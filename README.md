@@ -1,6 +1,12 @@
 L2boost Package
 ========================================================
 [![DOI](https://zenodo.org/badge/5745/ehrlinger/l2boost.png)](http://dx.doi.org/10.5281/zenodo.11437)
+[![CRAN version](http://www.r-pkg.org/badges/version/l2boost)](http://cran.r-project.org/web/packages/l2boost)
+![cranlogs](http://cranlogs.r-pkg.org./badges/l2boost)
+
+![active](http://www.repostatus.org/badges/latest/active.svg)
+[![Build Status](https://travis-ci.org/ehrlinger/l2boost.svg?branch=master)](https://travis-ci.org/ehrlinger/l2boost)
+[![Coverage Status](https://coveralls.io/repos/ehrlinger/l2boost/badge.svg?branch=master&service=github)](https://coveralls.io/github/ehrlinger/l2boost?branch=master)
 
 The L2boost package is an efficient implementation of Freidman's boosting algorithm for linear regression using an l2-loss function and coordinate direction (design matrix columns) basis functions. The package was developed in support of Ehrlinger and Ishwaran (2012)
 
