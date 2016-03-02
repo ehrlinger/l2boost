@@ -9,6 +9,8 @@
 #---------------------------------------------------------------------
 #' @export l2boost
 #' @name l2boost
+#' @aliases l2boost l2boost.default l2boost.formula
+#' 
 #' 
 l2boost <- function(x, ...)UseMethod("l2boost")
 #

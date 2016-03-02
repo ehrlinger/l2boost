@@ -1,2 +1,19 @@
+.gitignore
 ^.*\.Rproj$
 ^\.Rproj\.user$
+cran-comments.md
+.travis.yml
+wercker.yml
+.coveralls.yml
+^packrat/
+^\.Rprofile$
+Sweave.sty
+useR2014.pdf
+jss.cls
+jss.bst
+jsslogo.jpg
+framed.sty
+^vignettes/fig-rf/*
+^vignettes
+/fig-rfs/*
+# ^tests/*
