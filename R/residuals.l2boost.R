@@ -49,7 +49,7 @@
 #'   lty=2, col="red", lwd=2)
 #' abline(h=0, lty=2, col = 'gray')
 #' 
-#' @export residuals.l2boost
+#' @export 
 residuals.l2boost <- function(object, m=NULL, ...){
   if(inherits(object, "cv")) object<- object$fit
   

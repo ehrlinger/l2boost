@@ -1,6 +1,6 @@
-#' @title Extract model coefficients from an l2boost model object at any point along the solution path indexed by step m.
+#' Extract model coefficients from an l2boost model object at any point along the solution path indexed by step m.
 #'  
-#' @details \code{\link{coef}} is a generic function which extracts model coefficients from objects returned by modeling functions. 
+#' \code{\link{coef}} is a generic function which extracts model coefficients from objects returned by modeling functions. 
 #' 
 #' By default, \code{\link{coef.l2boost}} returns the model (beta) coefficients from the last step, 
 #' M of the \code{\link{l2boost}} model. For a \code{\link{cv.l2boost}} object, the default returns the coefficients from 
@@ -32,8 +32,7 @@
 #' # At the m=500 step
 #' coef(object, m=500)
 #'
-#' @export coef.l2boost
-#' 
+#' @export
 coef.l2boost <- function(object, m=NULL, ...){
   if(inherits(object, "cv")){
     if(!is.null(m)) warning ("Cannot select step number for cv.l2boost objects.")

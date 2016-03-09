@@ -32,7 +32,7 @@
 #' # Similar at m=100
 #' print(object, m=100)
 #' 
-#' @export print.l2boost
+#' @export
 print.l2boost <- function(x, m = NULL, ...){
   call<-match.call()
 

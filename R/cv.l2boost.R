@@ -111,8 +111,10 @@
 #' plot(coef(cv.eBoost$fit, m=cv.obj$opt.step), cex=.5, 
 #'   ylab=expression(beta[i]), xlab="Column Index", ylim=c(0,140), col=sig)
 #' }
+#' 
 #' @export cv.l2boost
-#' @importFrom parallel mclapply
+#' @importFrom parallel mclapply detectCores
+#' 
 cv.l2boost <- function(x, y, K = 10, M = NULL, nu = 1e-4, lambda = NULL, trace = FALSE, 
                        type = c( "discrete", "hybrid", "friedman","lars"), cores=NULL,
                        ...) {

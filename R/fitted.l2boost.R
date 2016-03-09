@@ -1,6 +1,6 @@
-#' @title Extract the fitted model estimates along the solution path for an l2boost model.
+#' Extract the fitted model estimates along the solution path for an l2boost model.
 #' 
-#' @details \code{\link{fitted}} is a generic function which extracts fitted values from objects 
+#' \code{\link{fitted}} is a generic function which extracts fitted values from objects 
 #' returned by modeling functions. 
 #' 
 #' \code{\link{fitted.l2boost}} returns the function estimates obtained 
@@ -54,8 +54,7 @@
 #'   type="l", lty=2, col="red", lwd=2)
 #' abline(h=0, lty=2, col = 'gray')
 #' 
-#' @export fitted.l2boost
-#' 
+#' @export
 fitted.l2boost <- function(object, m=NULL, ...){
   if(inherits(object, "cv")){
     if(is.null(m)){

@@ -7,21 +7,15 @@
 # y is centered --- > mean is returned as part of the object
 # !!! remove x-columns with NA's !!! CAUTION
 #---------------------------------------------------------------------
-#' @export l2boost
-#' @name l2boost
-#' @aliases l2boost l2boost.default l2boost.formula
-#' 
-#' 
-l2boost <- function(x, ...)UseMethod("l2boost")
 #
-#' @title Generic gradient descent boosting method for linear regression.
+#' Generic gradient descent boosting method for linear regression.
 #' 
-#' @description Efficient implementation of Friedman's boosting algorithm  [Friedman (2001)] with L2-loss function and coordinate
+#' Efficient implementation of Friedman's boosting algorithm  [Friedman (2001)] with L2-loss function and coordinate
 #'  direction (design matrix columns) basis functions. This includes the elasticNet data augmentation of Ehrlinger and Ishwaran (2012), 
 #'  which adds an L2-penalization (lambda) similar to the elastic net [Zou and Hastie (2005)].
 #' 
-#' @details
-#'  The \code{\link{l2boost}} function is an efficient implementation of a generic boosting method [Friedman (2001)] for
+#' 
+#' The \code{\link{l2boost}} function is an efficient implementation of a generic boosting method [Friedman (2001)] for
 #' linear regression using an L2-loss function. The basis functions are the column vectors of the design matrix. 
 #' \code{\link{l2boost}} scales the design matrix such that the coordinate columns of the design correspond to the
 #' gradient directions for each covariate. The boosting coefficients are equivalent to the gradient-correlation of each 
@@ -76,7 +70,6 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #' @references Zou H. and Hastie T (2005) "Regularization and variable selection via the elastic net"  \emph{J. R. Statist. Soc. B}, 67, Part 2, pp. 301-320
 #' @references Efron B., Hastie T., Johnstone I., and Tibshirani R. (2004). "Least Angle Regression" \emph{Ann. Statist.} 32:407-499
 #'
-#' @usage \method{l2boost}{default}(x, y, M, nu, lambda, trace, type, qr.tolerance, eps.tolerance, ...)
 #'
 #' @param x design matrix of dimension n x p
 #' @param y response variable of length n
@@ -184,9 +177,12 @@ l2boost <- function(x, ...)UseMethod("l2boost")
 #'   main="elasticBoost nu=1.e-3, lambda=.1")
 #' }
 #' 
-#' @rdname l2boost
-#' @name l2boost
-#' @export l2boost.default
+#' @aliases l2boost l2boost.default l2boost.formula
+#' 
+#' @export
+l2boost <- function(x, ...)UseMethod("l2boost")
+
+#' @export 
 l2boost.default <- function(x, y,
                             M = NULL, nu = 1e-4, lambda = NULL, trace = FALSE, 
                             type = c("discrete", "hybrid", "friedman","lars"),
@@ -473,7 +469,7 @@ l2boost.default <- function(x, y,
 #' 
 #' @aliases l2boost.formula l2boost.default
 #' 
-#' @export l2boost.formula
+#' @export
 l2boost.formula <- function(formula, data, ...){  
     mf <- model.frame(formula=formula, data=data)
     x<- model.matrix(attr(mf, "terms"), data=mf)

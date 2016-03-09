@@ -6,8 +6,6 @@
 \alias{l2boost.formula}
 \title{Generic gradient descent boosting method for linear regression.}
 \usage{
-l2boost(x, ...)
-
 \method{l2boost}{default}(x, y, M, nu, lambda, trace, type, qr.tolerance, eps.tolerance, ...)
 
 \method{l2boost}{formula}(formula, data, ...)
@@ -16,22 +14,6 @@ l2boost(x, ...)
 \item{x}{design matrix of dimension n x p}
 
 \item{...}{other arguments (currently unused)}
-
-\item{y}{response variable of length n}
-
-\item{M}{number of steps to run boost algorithm (M >1)}
-
-\item{nu}{L1 shrinkage parameter (0 < nu <= 1)}
-
-\item{lambda}{L2 shrinkage parameter used for elastic net boosting (lambda > 0 || lambda = NULL)}
-
-\item{trace}{show runtime messages (default: FALSE)}
-
-\item{type}{Choice of l2boost algorithm from "discrete", "hybrid", "friedman","lars". See details below. (default "discrete")}
-
-\item{qr.tolerance}{tolerance limit for use in \code{\link{qr.solve}} (default: 1e-30)}
-
-\item{eps.tolerance}{dynamic step size lower limit (default: .Machine$double.eps)}
 
 \item{formula}{an object of class \code{\link{formula}} 
 (or one that can be coerced to that class): a symbolic 
@@ -42,6 +24,22 @@ model specification are given under \code{\link{formula}}.}
 (or object coercible by \code{\link{as.data.frame}} to 
 a data frame) containing the variables in the model used in the
 \code{\link{formula}}.}
+
+\item{y}{response variable of length n}
+
+\item{M}{number of steps to run boost algorithm (M >1)}
+
+\item{nu}{L1 shrinkage parameter (0 < nu <= 1)}
+
+\item{lambda}{L2 shrinkage parameter used for elastic net boosting (lambda > 0 || lambda = NULL)}
+
+\item{type}{Choice of l2boost algorithm from "discrete", "hybrid", "friedman","lars". See details below. (default "discrete")}
+
+\item{qr.tolerance}{tolerance limit for use in \code{\link{qr.solve}} (default: 1e-30)}
+
+\item{eps.tolerance}{dynamic step size lower limit (default: .Machine$double.eps)}
+
+\item{trace}{show runtime messages (default: FALSE)}
 }
 \value{
 A "l2boost" object is returned, for which print, plot, predict, and coef methods exist.
@@ -105,7 +103,7 @@ The \code{\link{l2boost}} function uses an arbitrary L1-regularization parameter
 data augmentation of Ehrlinger and Ishwaran (2012), to add an L2-penalization (lambda) similar to the elastic net 
 [Zou and Hastie (2005)]. The L2-regularization reverses repressibility, a condition where one variable acts as 
 a boosting surrogate for other, possibly informative, variables. Along with the decorrelation 
-effect, this \emph{elasticBoost} regularization circumvents L2Boost deficiencies in correlated settings. 
+effect, this \emph{elasticBoost} regularization circumvents L2Boost deficiencies in correlated settings.
 
 We include a series of S3 functions for working  with \code{\link{l2boost}} objects:
 \itemize{

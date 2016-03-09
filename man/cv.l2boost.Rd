@@ -122,6 +122,7 @@ abline(v=cv.eBoost$opt.step, lty=2, col="grey")
 plot(coef(cv.eBoost$fit, m=cv.obj$opt.step), cex=.5, 
   ylab=expression(beta[i]), xlab="Column Index", ylim=c(0,140), col=sig)
 }
+
 }
 \seealso{
 \code{\link{l2boost}}, \code{\link{plot.l2boost}}, 

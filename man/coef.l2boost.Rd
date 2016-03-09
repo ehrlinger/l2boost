@@ -2,7 +2,9 @@
 % Please edit documentation in R/coef.l2boost.R
 \name{coef.l2boost}
 \alias{coef.l2boost}
-\title{Extract model coefficients from an l2boost model object at any point along the solution path indexed by step m.}
+\title{Extract model coefficients from an l2boost model object at any point along the solution path indexed by step m.
+ 
+\code{\link{coef}} is a generic function which extracts model coefficients from objects returned by modeling functions.}
 \usage{
 \method{coef}{l2boost}(object, m = NULL, ...)
 }
@@ -17,9 +19,7 @@
 vector of coefficient estimates for \code{\link{l2boost}} objects. 
 The estimates correspond to the given iteration number \emph{m}, or the final step \emph{M}.
 }
-\details{
-\code{\link{coef}} is a generic function which extracts model coefficients from objects returned by modeling functions. 
-
+\description{
 By default, \code{\link{coef.l2boost}} returns the model (beta) coefficients from the last step, 
 M of the \code{\link{l2boost}} model. For a \code{\link{cv.l2boost}} object, the default returns the coefficients from 
 model at the cross-validation optimal step (\emph{m = opt.step} return value).

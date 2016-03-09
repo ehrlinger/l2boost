@@ -17,10 +17,11 @@
 The vector of fitted response estimates at the given iteration m. By default,
  the coefficients are obtained from the last iteration m=M.
 }
-\details{
+\description{
 \code{\link{fitted}} is a generic function which extracts fitted values from objects 
-returned by modeling functions. 
-
+returned by modeling functions.
+}
+\details{
 \code{\link{fitted.l2boost}} returns the function estimates obtained 
 from  the training set observations of an l2boost model object at any point along the solution path. 
 The estimate, F_m(x) is evaluated at iteration m using the training data set x. By default, 
