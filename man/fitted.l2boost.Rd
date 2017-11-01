@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{an l2boost object}
 
-\item{m}{the iteration number with the l2boost path. (defualt m=NULL)}
+\item{m}{the iteration number with the l2boost path. (default m=NULL)}
 
 \item{...}{other arguments}
 }

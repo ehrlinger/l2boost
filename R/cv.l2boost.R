@@ -17,7 +17,7 @@
 #' sets of the all of the K training datasets. The optimal step \emph{m} is obtained at the step with a minimal averaged 
 #' mean square error.
 #' 
-#' The full \code{\link{l2boost}} model is run after the cross-validation models, on the full dateset. This model is
+#' The full \code{\link{l2boost}} model is run after the cross-validation models, on the full data set. This model is
 #' run for the full number of iteration steps \emph{M} and returned in the cv.l2boost$fit object. 
 #' 
 #' \code{\link{cv.l2boost}} only optimizes along the iteration count \emph{m} for a given value of \emph{nu}. This is
@@ -36,7 +36,7 @@
 #' @param y the response vector
 #' @param K number of cross-validation folds (default: 10)
 #' @param M the total number of iterations passed to \code{\link{l2boost}}.
-#' @param nu l1 shrinkage paramater (default: 1e-4)
+#' @param nu l1 shrinkage parameter (default: 1e-4)
 #' @param lambda l2 shrinkage parameter for elasticBoost (default: NULL = no l2-regularization)
 #' @param type Type of l2boost fit with (default: discrete) see \code{\link{l2boost}} for description.
 #' @param cores number of cores to parallel the cv analysis. If not specified, detects the 

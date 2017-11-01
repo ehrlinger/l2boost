@@ -8,7 +8,7 @@
   newdata = xnew, ...)
 }
 \arguments{
-\item{object}{an l2boost objectect}
+\item{object}{an l2boost object}
 
 \item{xnew}{a new design matrix to fit with the l2boost object}
 

@@ -10,7 +10,7 @@
 #' iteration step m is specified.
 #' 
 #' @param object an l2boost object
-#' @param m the iteration number with the l2boost path. (defualt m=NULL)
+#' @param m the iteration number with the l2boost path. (default m=NULL)
 #' @param ... other arguments
 #'
 #' @return The vector of fitted response estimates at the given iteration m. By default,

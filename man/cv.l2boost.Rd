@@ -17,7 +17,7 @@ cv.l2boost(x, y, K = 10, M = NULL, nu = 1e-04, lambda = NULL,
 
 \item{M}{the total number of iterations passed to \code{\link{l2boost}}.}
 
-\item{nu}{l1 shrinkage paramater (default: 1e-4)}
+\item{nu}{l1 shrinkage parameter (default: 1e-4)}
 
 \item{lambda}{l2 shrinkage parameter for elasticBoost (default: NULL = no l2-regularization)}
 
@@ -60,7 +60,7 @@ out one of the K subsets. The prediction error estimate is calculated by averagi
 sets of the all of the K training datasets. The optimal step \emph{m} is obtained at the step with a minimal averaged 
 mean square error.
 
-The full \code{\link{l2boost}} model is run after the cross-validation models, on the full dateset. This model is
+The full \code{\link{l2boost}} model is run after the cross-validation models, on the full data set. This model is
 run for the full number of iteration steps \emph{M} and returned in the cv.l2boost$fit object. 
 
 \code{\link{cv.l2boost}} only optimizes along the iteration count \emph{m} for a given value of \emph{nu}. This is

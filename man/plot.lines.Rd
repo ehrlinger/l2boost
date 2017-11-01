@@ -18,7 +18,7 @@
 
 \item{active}{active set coloring (default: TRUE)}
 
-\item{col}{vector of color values lnegth >= 1 (default: NULL use built in scheme)}
+\item{col}{vector of color values length >= 1 (default: NULL use built in scheme)}
 }
 \description{
 plots.lines is used by \code{\link{plot.l2boost}} to the path lines (each j, against each r-step)

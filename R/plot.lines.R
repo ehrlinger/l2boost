@@ -7,7 +7,7 @@
 #' @param path Plot the path values along the y-axis
 #' @param l.crit change the color at the value of m=l.crit
 #' @param active active set coloring (default: TRUE)
-#' @param col vector of color values lnegth >= 1 (default: NULL use built in scheme)
+#' @param col vector of color values length >= 1 (default: NULL use built in scheme)
 #' 
 #' @importFrom graphics lines
 

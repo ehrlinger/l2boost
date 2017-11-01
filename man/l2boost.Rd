@@ -91,7 +91,7 @@ We include a series of algorithms to solve the boosting optimization. These are 
    \emph{nu}.
 \item \emph{lars} - The l2boost-lars-limit (See Efron et.al (2004)). This algorithm takes a single step of the 
   optimal length to the critical point required for a new coordinate direction to become favorable. Although optimal
-  in the number of steps required to reach the OLS solution, this method may be computationaly expensive for large p
+  in the number of steps required to reach the OLS solution, this method may be computationally expensive for large p
   problems, as the method requires a matrix inversion to calculate the step length. 
 \item \emph{discrete} - Optimized Friedman algorithm to reduce number of evaluations required 
   [Ehrlinger and Ishwaran 2012]. The algorithm dynamically determines the number of steps of length \emph{nu} to take along
@@ -102,7 +102,7 @@ We include a series of algorithms to solve the boosting optimization. These are 
   directions (by the L2 measure).
 }
 
-\code{\link{l2boost}} keeps track of all gradient-coorelation coefficients (\emph{rho}) at each iteration in addition to the maximal
+\code{\link{l2boost}} keeps track of all gradient-correlation coefficients (\emph{rho}) at each iteration in addition to the maximal
 descent direction taken by the method. Visuallizing these coefficients can be informative of the inner workings of gradient boosting 
 (see the examples in the \code{\link{plot.l2boost}} method).
 
@@ -121,11 +121,11 @@ along the solution path.
 the training dataset) along the solution path. 
 \item \code{\link{residuals}} (\code{\link{residuals.l2boost}}) returns the training set \code{\link{l2boost}} residuals along the
 solution path.
-\item \code{\link{plot}} (\code{\link{plot.l2boost}}) for graphing model cofficients of an \code{\link{l2boost}} object.
+\item \code{\link{plot}} (\code{\link{plot.l2boost}}) for graphing model coefficients of an \code{\link{l2boost}} object.
 \item \code{\link{predict}} (\code{\link{predict.l2boost}}) for generating \code{\link{l2boost}} prediction estimates on possibly 
 new test set observations.
 }
-A cross-validation method (\code{\link{cv.l2boost}}) is also included for L2boost and elasticBoost, for cross-validated error estimats 
+A cross-validation method (\code{\link{cv.l2boost}}) is also included for L2boost and elasticBoost, for cross-validated error estimates 
 and regularization parameter optimizations.
 }
 \examples{
