@@ -1,7 +1,7 @@
 L2boost Package
 ========================================================
 [![DOI](https://zenodo.org/badge/5745/ehrlinger/l2boost.png)](http://dx.doi.org/10.5281/zenodo.11437)
-[![CRAN version](http://www.r-pkg.org/badges/version/l2boost)](http://cran.r-project.org/web/packages/l2boost)
+[![CRAN version](http://www.r-pkg.org/badges/version/l2boost)](https://CRAN.R-project.org/package=l2boost)
 ![cranlogs](http://cranlogs.r-pkg.org./badges/l2boost)
 
 ![active](http://www.repostatus.org/badges/latest/active.svg)
