@@ -49,11 +49,12 @@
 #'   lty=2, col="red", lwd=2)
 #' abline(h=0, lty=2, col = 'gray')
 #' 
+#'
 #' @export 
 residuals.l2boost <- function(object, m=NULL, ...){
   if(inherits(object, "cv")) object<- object$fit
   
-  prd <- predict(object, type="fit")
+  prd <- predict.l2boost(object, type="fit")
   rnms <- if(is.null(rownames(object$x))){1:dim(object$x)[1]}else{rownames(object$x)}
   if(is.null(m)){
     rs = as.vector(object$Fm - prd$yhat)

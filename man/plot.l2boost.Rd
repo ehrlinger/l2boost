@@ -119,9 +119,9 @@ clr[unique(cv.l2$fit$l.crit)] = "red"
 # red points are selected in boosting algorithm.
 plot(coef(cv.l2$fit, m=cv.l2$opt.step), col=clr, ylab=expression(beta))
 }
+
 }
 \seealso{
 \code{\link{l2boost}}, \code{\link{print.l2boost}}, \code{\link{predict.l2boost}} methods of l2boost 
 and \code{\link{cv.l2boost}}
 }
-

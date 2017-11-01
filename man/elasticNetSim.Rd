@@ -57,4 +57,3 @@ the simulation of Zou and Hastie (2005).
 Zou, H. and Hastie, T. (2005) Regularization and variable selection via the elastic net 
    \emph{J. R. Statist. Soc. B}, 67, Part 2, pp. 301-320
 }
-

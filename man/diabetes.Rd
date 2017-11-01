@@ -28,4 +28,3 @@ Hastie T. and Efron B. (2012). lars: Least Angle Regression, Lasso and Forward S
 R package version 1.1. http://CRAN.R-project.org/package=lars
 }
 \keyword{datasets}
-

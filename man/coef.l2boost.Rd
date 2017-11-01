@@ -45,4 +45,3 @@ coef(object, m=500)
 \code{\link{coef}} and \code{\link{l2boost}}, \code{\link{cv.l2boost}} and 
  \code{\link{predict.l2boost}} methods of l2boost.
 }
-

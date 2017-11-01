@@ -128,4 +128,3 @@ plot(coef(cv.eBoost$fit, m=cv.obj$opt.step), cex=.5,
 \code{\link{l2boost}}, \code{\link{plot.l2boost}}, 
 \code{\link{predict.l2boost}} and \code{\link{coef.l2boost}}
 }
-

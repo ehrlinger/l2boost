@@ -67,4 +67,3 @@ abline(h=0, lty=2, col = 'gray')
 \seealso{
 \code{\link{fitted}} and \code{\link{l2boost}} and \code{\link{predict.l2boost}}
 }
-

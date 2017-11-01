@@ -40,6 +40,7 @@
 #'   length(dta$y)
 #'   print(dta$x[1:5,])
 #'
+#' @importFrom stats rnorm 
 #' @export elasticNetSim
 
 elasticNetSim <- function(n, p=40, p0=15, signal=3, sigma=sqrt(0.01), beta.true=NULL){

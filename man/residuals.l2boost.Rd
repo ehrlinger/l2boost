@@ -57,8 +57,8 @@ lines(smooth.spline(fitted(l2.object,m=500), residuals(l2.object, m=500), df=4),
   lty=2, col="red", lwd=2)
 abline(h=0, lty=2, col = 'gray')
 
+
 }
 \seealso{
 \code{\link{residuals}} and \code{\link{l2boost}} and \code{\link{predict.l2boost}}
 }
-

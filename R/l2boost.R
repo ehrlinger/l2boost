@@ -179,9 +179,15 @@
 #' 
 #' @aliases l2boost l2boost.default l2boost.formula
 #' 
+#' 
+#' 
+#' @importFrom stats model.frame model.matrix model.response
 #' @export
 l2boost <- function(x, ...)UseMethod("l2boost")
 
+#' @usage \method{l2boost}{default}(x, y, M, nu, lambda, trace, type , qr.tolerance, eps.tolerance, ...)
+#' @name l2boost
+#' @rdname l2boost
 #' @export 
 l2boost.default <- function(x, y,
                             M = NULL, nu = 1e-4, lambda = NULL, trace = FALSE, 

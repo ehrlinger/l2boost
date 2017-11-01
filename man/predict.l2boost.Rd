@@ -76,4 +76,3 @@ cbind(diabetes$y[1:5], predict(object, xnew=diabetes$x[1:5,])$yhat)
 \code{\link{predict}} and \code{\link{l2boost}}, \code{\link{coef.l2boost}},  
 \code{\link{fitted.l2boost}}, \code{\link{residuals.l2boost}} and \code{\link{cv.l2boost}}
 }
-

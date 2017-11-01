@@ -68,4 +68,3 @@ cbind(corr.data$y[1:5],corr.data$x[1:5,])
 \references{
 Ehrlinger J., and Ishwaran H. (2012). "Characterizing l2boosting" \emph{Ann. Statist.}, 40 (2), 1074-1101
 }
-

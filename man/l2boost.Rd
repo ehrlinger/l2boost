@@ -4,9 +4,16 @@
 \alias{l2boost}
 \alias{l2boost.default}
 \alias{l2boost.formula}
+\alias{l2boost}
+\alias{l2boost.default}
+\alias{l2boost}
+\alias{l2boost.formula}
+\alias{l2boost.default}
 \title{Generic gradient descent boosting method for linear regression.}
 \usage{
-\method{l2boost}{default}(x, y, M, nu, lambda, trace, type, qr.tolerance, eps.tolerance, ...)
+l2boost(x, ...)
+
+\method{l2boost}{default}(x, y, M, nu, lambda, trace, type , qr.tolerance, eps.tolerance, ...)
 
 \method{l2boost}{formula}(formula, data, ...)
 }
@@ -14,6 +21,22 @@
 \item{x}{design matrix of dimension n x p}
 
 \item{...}{other arguments (currently unused)}
+
+\item{y}{response variable of length n}
+
+\item{M}{number of steps to run boost algorithm (M >1)}
+
+\item{nu}{L1 shrinkage parameter (0 < nu <= 1)}
+
+\item{lambda}{L2 shrinkage parameter used for elastic net boosting (lambda > 0 || lambda = NULL)}
+
+\item{trace}{show runtime messages (default: FALSE)}
+
+\item{type}{Choice of l2boost algorithm from "discrete", "hybrid", "friedman","lars". See details below. (default "discrete")}
+
+\item{qr.tolerance}{tolerance limit for use in \code{\link{qr.solve}} (default: 1e-30)}
+
+\item{eps.tolerance}{dynamic step size lower limit (default: .Machine$double.eps)}
 
 \item{formula}{an object of class \code{\link{formula}} 
 (or one that can be coerced to that class): a symbolic 
@@ -24,22 +47,6 @@ model specification are given under \code{\link{formula}}.}
 (or object coercible by \code{\link{as.data.frame}} to 
 a data frame) containing the variables in the model used in the
 \code{\link{formula}}.}
-
-\item{y}{response variable of length n}
-
-\item{M}{number of steps to run boost algorithm (M >1)}
-
-\item{nu}{L1 shrinkage parameter (0 < nu <= 1)}
-
-\item{lambda}{L2 shrinkage parameter used for elastic net boosting (lambda > 0 || lambda = NULL)}
-
-\item{type}{Choice of l2boost algorithm from "discrete", "hybrid", "friedman","lars". See details below. (default "discrete")}
-
-\item{qr.tolerance}{tolerance limit for use in \code{\link{qr.solve}} (default: 1e-30)}
-
-\item{eps.tolerance}{dynamic step size lower limit (default: .Machine$double.eps)}
-
-\item{trace}{show runtime messages (default: FALSE)}
 }
 \value{
 A "l2boost" object is returned, for which print, plot, predict, and coef methods exist.
@@ -196,4 +203,3 @@ Efron B., Hastie T., Johnstone I., and Tibshirani R. (2004). "Least Angle Regres
 \code{\link{coef.l2boost}}, \code{\link{residuals.l2boost}}, \code{\link{fitted.l2boost}} methods of l2boost 
 and \code{\link{cv.l2boost}} for K fold cross-validation of the l2boost method.
 }
-

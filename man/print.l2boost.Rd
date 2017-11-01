@@ -40,4 +40,3 @@ print(object, m=100)
 \seealso{
 \code{\link{l2boost}}, \code{\link{cv.l2boost}} and \code{\link{coef.l2boost}}
 }
-

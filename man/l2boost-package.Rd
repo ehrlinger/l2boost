@@ -45,4 +45,3 @@ Zou H. and Hastie T (2005) "Regularization and variable selection via the elasti
 
 Efron B., Hastie T., Johnstone I., and Tibshirani R. (2004). "Least Angle Regression" \emph{Ann. Statist.} 32:407-499
 }
-

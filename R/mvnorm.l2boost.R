@@ -59,6 +59,7 @@
 #' 
 #' @export mvnorm.l2boost
 #' @importFrom MASS mvrnorm
+#' @importFrom stats rnorm
 mvnorm.l2boost <- function(n=100,p=100, beta=NULL, which.beta=NULL, rho=0){
   call<-match.call()
   if(rho == 0){

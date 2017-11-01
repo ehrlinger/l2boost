@@ -1,9 +1,11 @@
-
-# Unimplemented generic function
-# These are placeholders right now.
-# @param x an l2boost object 
-# @param ... other arguments (not used)
-#
+#' Unimplemented generic function
+#' These are placeholders right now.
+#' @param x an l2boost object 
+#' @param ... other arguments (not used)
+#'
+#' @importFrom stats printCoefmat
+#' 
+#' @export
 print.summary.l2boost <- function(x, ...){
   stop("Unimplemented function")
   cat("Call:\n")

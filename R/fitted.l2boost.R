@@ -58,12 +58,12 @@
 fitted.l2boost <- function(object, m=NULL, ...){
   if(inherits(object, "cv")){
     if(is.null(m)){
-      rs<-predict(object$fit)$yhat.path[[object$opt.step]]
+      rs<-predict.l2boost(object$fit)$yhat.path[[object$opt.step]]
     }else if(m > length(object$fit$l.crit)){
       m = length(object$fit$l.crit)
-      rs<-predict(object$fit)$yhat.path[[m]]
+      rs<-predict.l2boost(object$fit)$yhat.path[[m]]
     }else{
-      rs<-predict(object$fit)$yhat.path[[m]]
+      rs<-predict.l2boost(object$fit)$yhat.path[[m]]
     }
   }else{
     rnms <- if(is.null(rownames(object$x))){1:dim(object$x)[1]}else{rownames(object$x)}
