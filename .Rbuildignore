@@ -17,3 +17,4 @@ framed.sty
 ^vignettes
 /fig-rfs/*
 # ^tests/*
+^cran-comments\.md$
