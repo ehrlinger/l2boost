@@ -1,6 +1,6 @@
 Package: l2boost
 Type: Package
-Title: Friedman's Boosting Algorithm for Regularized Linear Regression
+Title: Exploring Friedman's Boosting Algorithm for Regularized Linear Regression
 Version: 1.0.1
 Date: 2017-11-01
 Authors@R: c(person("John", "Ehrlinger", role=c("aut", "cre"),

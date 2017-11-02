@@ -1,6 +1,6 @@
-L2boost Package
+L2boost - Exploring Friedman's Boosting Algorithm for Regularized Linear Regression
 ========================================================
-[![DOI](https://zenodo.org/badge/5745/ehrlinger/l2boost.png)](http://dx.doi.org/10.5281/zenodo.11437)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11437.svg)](https://doi.org/10.5281/zenodo.11437)
 [![CRAN version](http://www.r-pkg.org/badges/version/l2boost)](https://CRAN.R-project.org/package=l2boost)
 ![cranlogs](http://cranlogs.r-pkg.org./badges/l2boost)
 
