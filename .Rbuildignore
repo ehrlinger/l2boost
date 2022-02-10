@@ -18,3 +18,4 @@ framed.sty
 /fig-rfs/*
 # ^tests/*
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
