@@ -4,8 +4,7 @@
 \alias{plot.lines}
 \title{plots.lines is used by \code{\link{plot.l2boost}} to the path lines (each j, against each r-step)}
 \usage{
-\method{plot}{lines}(xval = NULL, ind, path, l.crit, active = TRUE,
-  col = NULL)
+\method{plot}{lines}(xval = NULL, ind, path, l.crit, active = TRUE, col = NULL)
 }
 \arguments{
 \item{xval}{vector of x-values corresponding to the path y-values (default: NULL index of path)}

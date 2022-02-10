@@ -4,8 +4,7 @@
 \alias{mvnorm.l2boost}
 \title{multivariate normal data simulations.}
 \usage{
-mvnorm.l2boost(n = 100, p = 100, beta = NULL, which.beta = NULL,
-  rho = 0)
+mvnorm.l2boost(n = 100, p = 100, beta = NULL, which.beta = NULL, rho = 0)
 }
 \arguments{
 \item{n}{number of observations}

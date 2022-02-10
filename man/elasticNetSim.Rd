@@ -4,8 +4,14 @@
 \alias{elasticNetSim}
 \title{A blocked correlated data simulation.}
 \usage{
-elasticNetSim(n, p = 40, p0 = 15, signal = 3, sigma = sqrt(0.01),
-  beta.true = NULL)
+elasticNetSim(
+  n,
+  p = 40,
+  p0 = 15,
+  signal = 3,
+  sigma = sqrt(0.01),
+  beta.true = NULL
+)
 }
 \arguments{
 \item{n}{number of observations}

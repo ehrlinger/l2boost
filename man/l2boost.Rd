@@ -4,11 +4,6 @@
 \alias{l2boost}
 \alias{l2boost.default}
 \alias{l2boost.formula}
-\alias{l2boost}
-\alias{l2boost.default}
-\alias{l2boost}
-\alias{l2boost.formula}
-\alias{l2boost.default}
 \title{Generic gradient descent boosting method for linear regression.}
 \usage{
 l2boost(x, ...)
@@ -110,7 +105,7 @@ The \code{\link{l2boost}} function uses an arbitrary L1-regularization parameter
 data augmentation of Ehrlinger and Ishwaran (2012), to add an L2-penalization (lambda) similar to the elastic net 
 [Zou and Hastie (2005)]. The L2-regularization reverses repressibility, a condition where one variable acts as 
 a boosting surrogate for other, possibly informative, variables. Along with the decorrelation 
-effect, this \emph{elasticBoost} regularization circumvents L2Boost deficiencies in correlated settings.
+effect, this \emph{elasticBoost} regularization circumvents L2Boost deficiencies in correlated settings. 
 
 We include a series of S3 functions for working  with \code{\link{l2boost}} objects:
 \itemize{

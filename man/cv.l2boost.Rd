@@ -4,9 +4,18 @@
 \alias{cv.l2boost}
 \title{K-fold cross-validation using \code{\link{l2boost}}.}
 \usage{
-cv.l2boost(x, y, K = 10, M = NULL, nu = 1e-04, lambda = NULL,
-  trace = FALSE, type = c("discrete", "hybrid", "friedman", "lars"),
-  cores = NULL, ...)
+cv.l2boost(
+  x,
+  y,
+  K = 10,
+  M = NULL,
+  nu = 1e-04,
+  lambda = NULL,
+  trace = FALSE,
+  type = c("discrete", "hybrid", "friedman", "lars"),
+  cores = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{the design matrix}
