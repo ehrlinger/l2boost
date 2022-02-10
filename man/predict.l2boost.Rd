@@ -4,8 +4,7 @@
 \alias{predict.l2boost}
 \title{predict method for l2boost models.}
 \usage{
-\method{predict}{l2boost}(object, xnew = NULL, type = c("fit", "coef"),
-  newdata = xnew, ...)
+\method{predict}{l2boost}(object, xnew = NULL, type = c("fit", "coef"), newdata = xnew, ...)
 }
 \arguments{
 \item{object}{an l2boost object}
@@ -61,7 +60,7 @@ prd$yhat
 # at step m=600
 prd$yhat.path[[600]]
 
-# Also can return coefficient estimates. This is equivalent to \\code{\\link{coef.l2boost}}
+# Also can return coefficient estimates. This is equivalent to \code{\link{coef.l2boost}}
 cf <- predict(object, type="coef")
 cf$coef
 

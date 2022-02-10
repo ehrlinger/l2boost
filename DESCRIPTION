@@ -1,8 +1,8 @@
 Package: l2boost
 Type: Package
 Title: Exploring Friedman's Boosting Algorithm for Regularized Linear Regression
-Version: 1.0.2
-Date: 2017-11-01
+Version: 1.0.3
+Date: 2022-02-10
 Authors@R: c(person("John", "Ehrlinger", role=c("aut", "cre"),
     email="john.ehrlinger@gmail.com"), person("Hemant", "Ishwaran",
     role="aut"))
@@ -18,4 +18,4 @@ Packaged: 2013-05-31 6:29:07 UTC;
 Author: John Ehrlinger [aut, cre],
     Hemant Ishwaran [aut]
 Maintainer: John Ehrlinger <john.ehrlinger@gmail.com>
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.2

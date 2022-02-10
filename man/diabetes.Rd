@@ -4,12 +4,14 @@
 \name{diabetes}
 \alias{diabetes}
 \title{Blood and other measurements in diabetics [Hastie and Efron (2012)]}
-\format{A list of 3 data objects, 
+\format{
+A list of 3 data objects, 
 \itemize{
 \item x: A data frame with 10 variables and 442 observations
 \item y: a numeric response vector of 442 observations
 \item x2: a design matrix including interaction terms with 64 columns and 442 observations.
-}}
+}
+}
 \usage{
 diabetes
 }

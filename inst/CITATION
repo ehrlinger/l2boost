@@ -12,7 +12,7 @@
               note = vers,
      
               textVersion =
-              paste("John Ehrlinger, Hemant Ishwaran,",
+              paste("John Ehrlinger, Hemant Ishwaran",
                     "and the R Development Core Team (",
                     year,
                     "). l2boost: Boosting linear regression models with l2 loss. ",
@@ -20,14 +20,14 @@
 
 citEntry(entry="Article",
          title  = "Characterizing l2boosting",
-         author = personList(person(last="Ehrlinger", first="H."),
-                       person(last="Ishwaran", first="H.")),
+         author = personList(person(family="Ehrlinger", given="John"),
+                       person(family="Ishwaran", given="Hemant")),
          journal      = "Ann. Statist.",
          year         = "2012",
          volume       = "40",
          number       = "2",
          pages        = "1074--1101",
-         url          = "http://projecteuclid.org/DPubS?service=UI&version=1.0&verb=Display&handle=euclid.aos/1342625462",
+         url          = "https://projecteuclid.org/journals/annals-of-statistics/volume-40/issue-2/Characterizing-L_2Boosting/10.1214/12-AOS997.full",
          textVersion = 
          paste("Ehrlinger J., and Ishwaran H. (",year, 
             ") Characterizing l2boosting. Ann. Statist., 40 (2), 1074-1101",

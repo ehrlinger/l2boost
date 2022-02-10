@@ -4,9 +4,21 @@
 \alias{plot.l2boost}
 \title{Plotting for \code{\link{l2boost}} objects.}
 \usage{
-\method{plot}{l2boost}(x, type = c("rho", "coef"), standardize = TRUE,
-  active.set = NULL, xvar = c("step", "norm"), xlab = NULL, ylab = NULL,
-  trim = TRUE, clip = NULL, col = NULL, ylim = NULL, xlim = NULL, ...)
+\method{plot}{l2boost}(
+  x,
+  type = c("rho", "coef"),
+  standardize = TRUE,
+  active.set = NULL,
+  xvar = c("step", "norm"),
+  xlab = NULL,
+  ylab = NULL,
+  trim = TRUE,
+  clip = NULL,
+  col = NULL,
+  ylim = NULL,
+  xlim = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{l2boost or cv.l2boost object}
