@@ -13,7 +13,7 @@
 #' @param object an l2boost object
 #' @param xnew a new design matrix to fit with the l2boost object
 #' @param newdata a new design matrix to fit with the l2boost object
-#' @param type "fit" or "coef" determins the values returned. "fit" returns model estimates, "coef" returns the 
+#' @param type "fit" or "coef" determines the values returned. "fit" returns model estimates, "coef" returns the 
 #' model coefficients
 #' @param ... other arguments (currently not used)
 #'

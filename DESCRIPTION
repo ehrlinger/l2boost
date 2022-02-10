@@ -19,3 +19,4 @@ Author: John Ehrlinger [aut, cre],
     Hemant Ishwaran [aut]
 Maintainer: John Ehrlinger <john.ehrlinger@gmail.com>
 RoxygenNote: 7.1.2
+LazyData: true

@@ -40,7 +40,7 @@
 #' }
 #' 
 #' \code{\link{l2boost}} keeps track of all gradient-correlation coefficients (\emph{rho}) at each iteration in addition to the maximal
-#' descent direction taken by the method. Visuallizing these coefficients can be informative of the inner workings of gradient boosting 
+#' descent direction taken by the method. Visualizing these coefficients can be informative of the inner workings of gradient boosting 
 #' (see the examples in the \code{\link{plot.l2boost}} method).
 #' 
 #' The \code{\link{l2boost}} function uses an arbitrary L1-regularization parameter (nu), and includes the elementary 
